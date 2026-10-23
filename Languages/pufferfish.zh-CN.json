@@ -1,0 +1,4447 @@
+[
+  {
+    "name": "2Pt Twisted Box",
+    "category": "Pufferfish",
+    "translation": "两点扭曲盒"
+  },
+  {
+    "name": "Align Curve Seams",
+    "category": "Pufferfish",
+    "translation": "对齐曲线接缝"
+  },
+  {
+    "name": "Angle Split Mesh",
+    "category": "Pufferfish",
+    "translation": "按角度分割网格"
+  },
+  {
+    "name": "Append Polysurfaces",
+    "category": "Pufferfish",
+    "translation": "合并分离的多重曲面"
+  },
+  {
+    "name": "Arc/Circle/Ellipse",
+    "category": "Pufferfish",
+    "translation": "圆弧/圆/椭圆"
+  },
+  {
+    "name": "Are Points Collinear",
+    "category": "Pufferfish",
+    "translation": "点是否共线"
+  },
+  {
+    "name": "Are Points Coplanar",
+    "category": "Pufferfish",
+    "translation": "点是否共面"
+  },
+  {
+    "name": "Automatic Edge Surface",
+    "category": "Pufferfish",
+    "translation": "自动边缘曲面"
+  },
+  {
+    "name": "Automatic Network Surface",
+    "category": "Pufferfish",
+    "translation": "自动网络曲面"
+  },
+  {
+    "name": "Average Curve",
+    "category": "Pufferfish",
+    "translation": "平均曲线"
+  },
+  {
+    "name": "Average Domain",
+    "category": "Pufferfish",
+    "translation": "平均区间"
+  },
+  {
+    "name": "Average Domain²",
+    "category": "Pufferfish",
+    "translation": "平均二维区间"
+  },
+  {
+    "name": "Average Mesh",
+    "category": "Pufferfish",
+    "translation": "平均网格"
+  },
+  {
+    "name": "Average Plane",
+    "category": "Pufferfish",
+    "translation": "平均平面"
+  },
+  {
+    "name": "Average SubD",
+    "category": "Pufferfish",
+    "translation": "平均细分曲面"
+  },
+  {
+    "name": "Average Surface",
+    "category": "Pufferfish",
+    "translation": "平均曲面"
+  },
+  {
+    "name": "Average Transform",
+    "category": "Pufferfish",
+    "translation": "平均变换"
+  },
+  {
+    "name": "Average Twisted Box",
+    "category": "Pufferfish",
+    "translation": "平均扭曲盒"
+  },
+  {
+    "name": "Blend Consecutive Meshes",
+    "category": "Pufferfish",
+    "translation": "相邻网格逐顶点混合"
+  },
+  {
+    "name": "Blend Through Meshes",
+    "category": "Pufferfish",
+    "translation": "贯穿网格组逐顶点混合"
+  },
+  {
+    "name": "Blend Two Meshes",
+    "category": "Pufferfish",
+    "translation": "两网格逐顶点混合"
+  },
+  {
+    "name": "Bounding Rectangle",
+    "category": "Pufferfish",
+    "translation": "包围矩形"
+  },
+  {
+    "name": "Center Twisted Box",
+    "category": "Pufferfish",
+    "translation": "居中扭曲盒"
+  },
+  {
+    "name": "Close Curve",
+    "category": "Pufferfish",
+    "translation": "闭合曲线"
+  },
+  {
+    "name": "Close Mesh",
+    "category": "Pufferfish",
+    "translation": "封闭网格"
+  },
+  {
+    "name": "Closest Plane Orientation",
+    "category": "Pufferfish",
+    "translation": "最近平面朝向"
+  },
+  {
+    "name": "Closest Vector",
+    "category": "Pufferfish",
+    "translation": "最近方向向量"
+  },
+  {
+    "name": "Color To Point",
+    "category": "Pufferfish",
+    "translation": "颜色转点"
+  },
+  {
+    "name": "Compatibilize Polylines",
+    "category": "Pufferfish",
+    "translation": "统一兼容多段线"
+  },
+  {
+    "name": "Constrained Area Ellipse",
+    "category": "Pufferfish",
+    "translation": "指定面积椭圆"
+  },
+  {
+    "name": "Constrained Area Polygon",
+    "category": "Pufferfish",
+    "translation": "指定面积多边形"
+  },
+  {
+    "name": "Constrained Area Rectangle",
+    "category": "Pufferfish",
+    "translation": "指定面积矩形"
+  },
+  {
+    "name": "Constrained Volume Box",
+    "category": "Pufferfish",
+    "translation": "指定体积盒"
+  },
+  {
+    "name": "Constrained Volume Ellipsoid",
+    "category": "Pufferfish",
+    "translation": "指定体积椭球"
+  },
+  {
+    "name": "Construct Twisted Box",
+    "category": "Pufferfish",
+    "translation": "构造扭曲盒"
+  },
+  {
+    "name": "Curve Align Curve Seams",
+    "category": "Pufferfish",
+    "translation": "沿曲线对齐曲线接缝"
+  },
+  {
+    "name": "Curve Coil Points",
+    "category": "Pufferfish",
+    "translation": "沿曲线螺旋点"
+  },
+  {
+    "name": "Curve Degree",
+    "category": "Pufferfish",
+    "translation": "曲线次数"
+  },
+  {
+    "name": "Curve Edit Points",
+    "category": "Pufferfish",
+    "translation": "曲线编辑点"
+  },
+  {
+    "name": "Curve Graph Mapper",
+    "category": "Pufferfish",
+    "translation": "曲线图形映射器"
+  },
+  {
+    "name": "Curve Length At",
+    "category": "Pufferfish",
+    "translation": "曲线至点长度"
+  },
+  {
+    "name": "Curve Length Between",
+    "category": "Pufferfish",
+    "translation": "曲线上两点间长度"
+  },
+  {
+    "name": "Curve Middle Point",
+    "category": "Pufferfish",
+    "translation": "曲线中点"
+  },
+  {
+    "name": "Curve Spans",
+    "category": "Pufferfish",
+    "translation": "曲线跨度"
+  },
+  {
+    "name": "Curve Statistics",
+    "category": "Pufferfish",
+    "translation": "曲线统计"
+  },
+  {
+    "name": "Curve Wave Points",
+    "category": "Pufferfish",
+    "translation": "沿曲线波浪点"
+  },
+  {
+    "name": "Deconstruct Number",
+    "category": "Pufferfish",
+    "translation": "解构数值"
+  },
+  {
+    "name": "Deconstruct Twisted Box",
+    "category": "Pufferfish",
+    "translation": "解构扭曲盒"
+  },
+  {
+    "name": "Default Angle Tolerance",
+    "category": "Pufferfish",
+    "translation": "默认角度容差"
+  },
+  {
+    "name": "Deform Twisted Box",
+    "category": "Pufferfish",
+    "translation": "变形扭曲盒"
+  },
+  {
+    "name": "Discrete Polyline",
+    "category": "Pufferfish",
+    "translation": "方向离散多段线"
+  },
+  {
+    "name": "Dispatch Indices",
+    "category": "Pufferfish",
+    "translation": "按索引分派"
+  },
+  {
+    "name": "Displace Mesh",
+    "category": "Pufferfish",
+    "translation": "沿法向位移网格"
+  },
+  {
+    "name": "Document Angle Tolerance",
+    "category": "Pufferfish",
+    "translation": "文档角度容差"
+  },
+  {
+    "name": "Document Distance Tolerance",
+    "category": "Pufferfish",
+    "translation": "文档距离容差"
+  },
+  {
+    "name": "Domain Twisted Box",
+    "category": "Pufferfish",
+    "translation": "区间扭曲盒"
+  },
+  {
+    "name": "Edge Unsplit Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂边缘曲面"
+  },
+  {
+    "name": "Equality Within Tolerance",
+    "category": "Pufferfish",
+    "translation": "容差内相等判断"
+  },
+  {
+    "name": "Evaluate Twisted Box",
+    "category": "Pufferfish",
+    "translation": "扭曲盒求值"
+  },
+  {
+    "name": "Extrude Tapered Polysurface",
+    "category": "Pufferfish",
+    "translation": "锥度挤出多重曲面"
+  },
+  {
+    "name": "Extrude Unsplit Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂挤出曲面"
+  },
+  {
+    "name": "Fit Curve Segments",
+    "category": "Pufferfish",
+    "translation": "拟合曲线段"
+  },
+  {
+    "name": "Fit Curve Smooth",
+    "category": "Pufferfish",
+    "translation": "平滑拟合曲线"
+  },
+  {
+    "name": "Fit Surface",
+    "category": "Pufferfish",
+    "translation": "拟合曲面"
+  },
+  {
+    "name": "Flip Plane",
+    "category": "Pufferfish",
+    "translation": "反转平面"
+  },
+  {
+    "name": "Flip Polysurface",
+    "category": "Pufferfish",
+    "translation": "反转多重曲面"
+  },
+  {
+    "name": "Grayscale Color",
+    "category": "Pufferfish",
+    "translation": "灰度颜色"
+  },
+  {
+    "name": "Highest & Lowest Numbers",
+    "category": "Pufferfish",
+    "translation": "最大值与最小值"
+  },
+  {
+    "name": "Invert Boolean",
+    "category": "Pufferfish",
+    "translation": "布尔取反"
+  },
+  {
+    "name": "Invert Color",
+    "category": "Pufferfish",
+    "translation": "反色"
+  },
+  {
+    "name": "Is Arc/Circle/Ellipse",
+    "category": "Pufferfish",
+    "translation": "是否为圆弧/圆/椭圆"
+  },
+  {
+    "name": "Is Curve Kinky",
+    "category": "Pufferfish",
+    "translation": "曲线是否有折角"
+  },
+  {
+    "name": "Is Curve Linear",
+    "category": "Pufferfish",
+    "translation": "曲线是否为直线"
+  },
+  {
+    "name": "Is Curve Segmented",
+    "category": "Pufferfish",
+    "translation": "曲线是否分段"
+  },
+  {
+    "name": "Is Mesh Closed",
+    "category": "Pufferfish",
+    "translation": "网格是否闭合"
+  },
+  {
+    "name": "Is Mesh Disjoint",
+    "category": "Pufferfish",
+    "translation": "网格是否有分离部分"
+  },
+  {
+    "name": "Is Polysurface Closed",
+    "category": "Pufferfish",
+    "translation": "多重曲面是否闭合"
+  },
+  {
+    "name": "Is Surface Closed",
+    "category": "Pufferfish",
+    "translation": "曲面是否闭合"
+  },
+  {
+    "name": "Is Surface Collapsed",
+    "category": "Pufferfish",
+    "translation": "曲面是否退化"
+  },
+  {
+    "name": "Is Surface Singular",
+    "category": "Pufferfish",
+    "translation": "曲面是否有奇点"
+  },
+  {
+    "name": "Is Surface Trimmed",
+    "category": "Pufferfish",
+    "translation": "曲面是否已修剪"
+  },
+  {
+    "name": "Item Index List",
+    "category": "Pufferfish",
+    "translation": "项目索引列表"
+  },
+  {
+    "name": "Last Index",
+    "category": "Pufferfish",
+    "translation": "末项索引"
+  },
+  {
+    "name": "Last Index Range",
+    "category": "Pufferfish",
+    "translation": "末项索引范围"
+  },
+  {
+    "name": "Linearize Numbers",
+    "category": "Pufferfish",
+    "translation": "线性化数值"
+  },
+  {
+    "name": "List Indices",
+    "category": "Pufferfish",
+    "translation": "列表索引"
+  },
+  {
+    "name": "List Length Range",
+    "category": "Pufferfish",
+    "translation": "列表长度范围"
+  },
+  {
+    "name": "Loft Unsplit Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂放样曲面"
+  },
+  {
+    "name": "Map Point To Surface",
+    "category": "Pufferfish",
+    "translation": "点映射至曲面"
+  },
+  {
+    "name": "Mass Division",
+    "category": "Pufferfish",
+    "translation": "连续除法"
+  },
+  {
+    "name": "Mass Subtraction",
+    "category": "Pufferfish",
+    "translation": "连续减法"
+  },
+  {
+    "name": "Mass Transform",
+    "category": "Pufferfish",
+    "translation": "复合变换"
+  },
+  {
+    "name": "Mesh Boolean Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "用网格布尔裁剪扭曲盒"
+  },
+  {
+    "name": "Mesh Loop Edges",
+    "category": "Pufferfish",
+    "translation": "网格环边"
+  },
+  {
+    "name": "Mesh Naked Edges",
+    "category": "Pufferfish",
+    "translation": "网格裸边"
+  },
+  {
+    "name": "Mesh Statistics",
+    "category": "Pufferfish",
+    "translation": "网格统计"
+  },
+  {
+    "name": "Mesh To Polysurface",
+    "category": "Pufferfish",
+    "translation": "网格转多重曲面"
+  },
+  {
+    "name": "Mesh Trim Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "用网格裁剪扭曲盒"
+  },
+  {
+    "name": "Mirror Combine Colors",
+    "category": "Pufferfish",
+    "translation": "镜像合并颜色"
+  },
+  {
+    "name": "Mirror Combine Domains",
+    "category": "Pufferfish",
+    "translation": "镜像合并区间"
+  },
+  {
+    "name": "Mirror Combine Domains²",
+    "category": "Pufferfish",
+    "translation": "镜像合并区间²"
+  },
+  {
+    "name": "Mirror Combine Items",
+    "category": "Pufferfish",
+    "translation": "镜像合并项目"
+  },
+  {
+    "name": "Mirror Combine Numbers",
+    "category": "Pufferfish",
+    "translation": "镜像合并数值"
+  },
+  {
+    "name": "Mirror Combine Transforms",
+    "category": "Pufferfish",
+    "translation": "镜像合并变换"
+  },
+  {
+    "name": "Mirror Combine Vectors",
+    "category": "Pufferfish",
+    "translation": "镜像合并向量"
+  },
+  {
+    "name": "Mirror Cut Colors",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪颜色"
+  },
+  {
+    "name": "Mirror Cut Curve",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪曲线"
+  },
+  {
+    "name": "Mirror Cut Domains",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪区间"
+  },
+  {
+    "name": "Mirror Cut Domains²",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪区间²"
+  },
+  {
+    "name": "Mirror Cut Items",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪项目"
+  },
+  {
+    "name": "Mirror Cut Mesh",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪网格"
+  },
+  {
+    "name": "Mirror Cut Numbers",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪数值"
+  },
+  {
+    "name": "Mirror Cut Planes",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪平面"
+  },
+  {
+    "name": "Mirror Cut Points",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪点"
+  },
+  {
+    "name": "Mirror Cut Polysurface",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪多重曲面"
+  },
+  {
+    "name": "Mirror Cut SubD",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪细分曲面"
+  },
+  {
+    "name": "Mirror Cut Surface",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪曲面"
+  },
+  {
+    "name": "Mirror Cut Transforms",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪变换"
+  },
+  {
+    "name": "Mirror Cut Vectors",
+    "category": "Pufferfish",
+    "translation": "镜像裁剪向量"
+  },
+  {
+    "name": "Morph To Twisted Box",
+    "category": "Pufferfish",
+    "translation": "映射至扭曲盒"
+  },
+  {
+    "name": "Move 2Pt",
+    "category": "Pufferfish",
+    "translation": "两点移动"
+  },
+  {
+    "name": "Move To Point",
+    "category": "Pufferfish",
+    "translation": "移动至点"
+  },
+  {
+    "name": "Net On Surface",
+    "category": "Pufferfish",
+    "translation": "曲面曲线网"
+  },
+  {
+    "name": "Null Placeholder",
+    "category": "Pufferfish",
+    "translation": "空值占位符"
+  },
+  {
+    "name": "Odd & Even Numbers",
+    "category": "Pufferfish",
+    "translation": "奇数与偶数"
+  },
+  {
+    "name": "Offset Curve",
+    "category": "Pufferfish",
+    "translation": "偏移曲线"
+  },
+  {
+    "name": "Offset Curve From Surface",
+    "category": "Pufferfish",
+    "translation": "从曲面偏移曲线"
+  },
+  {
+    "name": "Offset Mesh",
+    "category": "Pufferfish",
+    "translation": "偏移网格"
+  },
+  {
+    "name": "Offset Plane",
+    "category": "Pufferfish",
+    "translation": "偏移平面"
+  },
+  {
+    "name": "Offset Surface",
+    "category": "Pufferfish",
+    "translation": "偏移曲面"
+  },
+  {
+    "name": "Open Curve",
+    "category": "Pufferfish",
+    "translation": "打开曲线"
+  },
+  {
+    "name": "Parameter Curve Divide Rectangle",
+    "category": "Pufferfish",
+    "translation": "按曲线参数分割矩形"
+  },
+  {
+    "name": "Parameter Curve Divide Surface",
+    "category": "Pufferfish",
+    "translation": "按曲线参数分割曲面"
+  },
+  {
+    "name": "Parameter Extrude Mesh",
+    "category": "Pufferfish",
+    "translation": "按参数挤出网格"
+  },
+  {
+    "name": "Parameter Grid On Surface",
+    "category": "Pufferfish",
+    "translation": "曲面上参数网格"
+  },
+  {
+    "name": "Parameter Loft Mesh",
+    "category": "Pufferfish",
+    "translation": "按参数放样网格"
+  },
+  {
+    "name": "Parameter Pipe Mesh",
+    "category": "Pufferfish",
+    "translation": "按参数生成管状网格"
+  },
+  {
+    "name": "Parameter Plane Divide Surface",
+    "category": "Pufferfish",
+    "translation": "按平面参数分割曲面"
+  },
+  {
+    "name": "Parameter Plane In Rectangle",
+    "category": "Pufferfish",
+    "translation": "矩形内参数平面"
+  },
+  {
+    "name": "Parameter Plane Mesh",
+    "category": "Pufferfish",
+    "translation": "平面参数网格面"
+  },
+  {
+    "name": "Parameter Plane On Surface",
+    "category": "Pufferfish",
+    "translation": "曲面上参数平面"
+  },
+  {
+    "name": "Parameter Point Divide Surface",
+    "category": "Pufferfish",
+    "translation": "按点参数分割曲面"
+  },
+  {
+    "name": "Parameter Point In Rectangle",
+    "category": "Pufferfish",
+    "translation": "矩形内参数点"
+  },
+  {
+    "name": "Parameter Point On Surface",
+    "category": "Pufferfish",
+    "translation": "曲面上参数点"
+  },
+  {
+    "name": "Parameter Rectangle Grid",
+    "category": "Pufferfish",
+    "translation": "矩形参数网格"
+  },
+  {
+    "name": "Parameter Rectangle Isocurve",
+    "category": "Pufferfish",
+    "translation": "矩形参数等参线"
+  },
+  {
+    "name": "Parameter Rectangle Mesh",
+    "category": "Pufferfish",
+    "translation": "矩形参数网格面"
+  },
+  {
+    "name": "Parameter Rectangular Grid",
+    "category": "Pufferfish",
+    "translation": "矩形参数网格"
+  },
+  {
+    "name": "Parameter Subdivide Surface",
+    "category": "Pufferfish",
+    "translation": "按参数细分曲面"
+  },
+  {
+    "name": "Parameter Surface Grid",
+    "category": "Pufferfish",
+    "translation": "曲面参数网格"
+  },
+  {
+    "name": "Parameter Surface Isocurve",
+    "category": "Pufferfish",
+    "translation": "曲面参数等参线"
+  },
+  {
+    "name": "Parameter Surface Mesh",
+    "category": "Pufferfish",
+    "translation": "曲面参数网格面"
+  },
+  {
+    "name": "Partition Number",
+    "category": "Pufferfish",
+    "translation": "数值分段"
+  },
+  {
+    "name": "Percentage",
+    "category": "Pufferfish",
+    "translation": "百分比"
+  },
+  {
+    "name": "Pinch'n'Spread",
+    "category": "Pufferfish",
+    "translation": "收拢与扩散"
+  },
+  {
+    "name": "Pinch'n'Spread Points",
+    "category": "Pufferfish",
+    "translation": "点收拢与扩散"
+  },
+  {
+    "name": "Plane Trim Curve",
+    "category": "Pufferfish",
+    "translation": "用平面修剪曲线"
+  },
+  {
+    "name": "Plane Trim Mesh",
+    "category": "Pufferfish",
+    "translation": "用平面修剪网格"
+  },
+  {
+    "name": "Plane Trim Planes",
+    "category": "Pufferfish",
+    "translation": "用平面裁剪平面组"
+  },
+  {
+    "name": "Plane Trim Points",
+    "category": "Pufferfish",
+    "translation": "用平面裁剪点组"
+  },
+  {
+    "name": "Plane Trim Surface",
+    "category": "Pufferfish",
+    "translation": "用平面修剪曲面"
+  },
+  {
+    "name": "Plane Trim Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "用平面裁剪扭曲盒"
+  },
+  {
+    "name": "Point Divide Curve Segments",
+    "category": "Pufferfish",
+    "translation": "按点等分曲线段"
+  },
+  {
+    "name": "Point Divide Curve Target Length",
+    "category": "Pufferfish",
+    "translation": "按目标长度分割曲线"
+  },
+  {
+    "name": "Point Fit Rectangle",
+    "category": "Pufferfish",
+    "translation": "通过点拟合矩形"
+  },
+  {
+    "name": "Point Mesh Side",
+    "category": "Pufferfish",
+    "translation": "点相对网格的侧别"
+  },
+  {
+    "name": "Point Plane Side",
+    "category": "Pufferfish",
+    "translation": "点相对平面的侧别"
+  },
+  {
+    "name": "Point Sort Items",
+    "category": "Pufferfish",
+    "translation": "按点排序项目"
+  },
+  {
+    "name": "Point Surface Edge",
+    "category": "Pufferfish",
+    "translation": "点的最近曲面边"
+  },
+  {
+    "name": "Point Surface Side",
+    "category": "Pufferfish",
+    "translation": "点相对曲面的侧别"
+  },
+  {
+    "name": "Point To Color",
+    "category": "Pufferfish",
+    "translation": "点转颜色"
+  },
+  {
+    "name": "Points Trim Curve",
+    "category": "Pufferfish",
+    "translation": "用点修剪曲线"
+  },
+  {
+    "name": "Polyline To Mesh",
+    "category": "Pufferfish",
+    "translation": "多段线转网格"
+  },
+  {
+    "name": "Polysurface Boolean Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "用多重曲面布尔裁剪扭曲盒"
+  },
+  {
+    "name": "Prude Curve",
+    "category": "Pufferfish",
+    "translation": "曲线折角平滑连接"
+  },
+  {
+    "name": "Rebuild Curve",
+    "category": "Pufferfish",
+    "translation": "重建曲线"
+  },
+  {
+    "name": "Rebuild Curve Segments",
+    "category": "Pufferfish",
+    "translation": "重建曲线段"
+  },
+  {
+    "name": "Rebuild Mesh",
+    "category": "Pufferfish",
+    "translation": "重建网格"
+  },
+  {
+    "name": "Rebuild Surface",
+    "category": "Pufferfish",
+    "translation": "重建曲面"
+  },
+  {
+    "name": "Rectangle Fit",
+    "category": "Pufferfish",
+    "translation": "拟合矩形"
+  },
+  {
+    "name": "Recursive Morph Mesh",
+    "category": "Pufferfish",
+    "translation": "递归网格形变"
+  },
+  {
+    "name": "Recursive Transform",
+    "category": "Pufferfish",
+    "translation": "递归变换"
+  },
+  {
+    "name": "Reduce Mesh",
+    "category": "Pufferfish",
+    "translation": "简化网格"
+  },
+  {
+    "name": "Reduce Mesh By Faces",
+    "category": "Pufferfish",
+    "translation": "按面数简化网格"
+  },
+  {
+    "name": "Reference Twisted Box",
+    "category": "Pufferfish",
+    "translation": "引用扭曲盒"
+  },
+  {
+    "name": "Relocate Curve Ends",
+    "category": "Pufferfish",
+    "translation": "重定位曲线端点"
+  },
+  {
+    "name": "Remap Curve Domain",
+    "category": "Pufferfish",
+    "translation": "重映射曲线区间"
+  },
+  {
+    "name": "Remap Surface Domain²",
+    "category": "Pufferfish",
+    "translation": "重映射曲面二维区间"
+  },
+  {
+    "name": "Reparameterize Curve",
+    "category": "Pufferfish",
+    "translation": "重新参数化曲线"
+  },
+  {
+    "name": "Reparameterize Domains",
+    "category": "Pufferfish",
+    "translation": "重新参数化区间"
+  },
+  {
+    "name": "Reparameterize Domains²",
+    "category": "Pufferfish",
+    "translation": "重新参数化区间²"
+  },
+  {
+    "name": "Reparameterize Numbers",
+    "category": "Pufferfish",
+    "translation": "重新参数化数值"
+  },
+  {
+    "name": "Reparameterize Points",
+    "category": "Pufferfish",
+    "translation": "重新参数化点"
+  },
+  {
+    "name": "Reparameterize Surface",
+    "category": "Pufferfish",
+    "translation": "重新参数化曲面"
+  },
+  {
+    "name": "Reparameterize Vectors",
+    "category": "Pufferfish",
+    "translation": "重新参数化向量"
+  },
+  {
+    "name": "Reparameterized Range",
+    "category": "Pufferfish",
+    "translation": "归一化范围"
+  },
+  {
+    "name": "Revolve Unsplit Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂旋转曲面"
+  },
+  {
+    "name": "Rotate Euler",
+    "category": "Pufferfish",
+    "translation": "欧拉旋转"
+  },
+  {
+    "name": "Rotate Plane Euler",
+    "category": "Pufferfish",
+    "translation": "欧拉旋转平面"
+  },
+  {
+    "name": "Rotate Plane XYZ",
+    "category": "Pufferfish",
+    "translation": "XYZ 旋转平面"
+  },
+  {
+    "name": "Rotate Quaternion",
+    "category": "Pufferfish",
+    "translation": "四元数旋转"
+  },
+  {
+    "name": "Rotate World",
+    "category": "Pufferfish",
+    "translation": "世界坐标旋转"
+  },
+  {
+    "name": "Round To Decimal Place",
+    "category": "Pufferfish",
+    "translation": "按小数位舍入"
+  },
+  {
+    "name": "Round To Factor",
+    "category": "Pufferfish",
+    "translation": "按倍数舍入"
+  },
+  {
+    "name": "Round To Nearest",
+    "category": "Pufferfish",
+    "translation": "舍入至最近值"
+  },
+  {
+    "name": "Scale To Area",
+    "category": "Pufferfish",
+    "translation": "缩放至指定面积"
+  },
+  {
+    "name": "Scale To Length",
+    "category": "Pufferfish",
+    "translation": "缩放至指定长度"
+  },
+  {
+    "name": "Scale To Volume",
+    "category": "Pufferfish",
+    "translation": "缩放至指定体积"
+  },
+  {
+    "name": "Seam To Curve Corner",
+    "category": "Pufferfish",
+    "translation": "接缝移至曲线角点"
+  },
+  {
+    "name": "Shell Polysurface",
+    "category": "Pufferfish",
+    "translation": "壳体多重曲面"
+  },
+  {
+    "name": "Shrink Trimmed Surface",
+    "category": "Pufferfish",
+    "translation": "收缩已修剪曲面"
+  },
+  {
+    "name": "Sift Indices",
+    "category": "Pufferfish",
+    "translation": "按索引筛分"
+  },
+  {
+    "name": "Slide Curve Along Curve",
+    "category": "Pufferfish",
+    "translation": "沿曲线滑动曲线"
+  },
+  {
+    "name": "Slide Within Domain",
+    "category": "Pufferfish",
+    "translation": "区间内滑动"
+  },
+  {
+    "name": "Slide Within Domain²",
+    "category": "Pufferfish",
+    "translation": "二维区间内滑动"
+  },
+  {
+    "name": "Slide Within Transform",
+    "category": "Pufferfish",
+    "translation": "变换内插值"
+  },
+  {
+    "name": "Smooth Curve",
+    "category": "Pufferfish",
+    "translation": "平滑曲线"
+  },
+  {
+    "name": "Split Kinky Surface",
+    "category": "Pufferfish",
+    "translation": "按折角分裂曲面"
+  },
+  {
+    "name": "Subdivide Twisted Box",
+    "category": "Pufferfish",
+    "translation": "细分扭曲盒"
+  },
+  {
+    "name": "Superimpose Curve",
+    "category": "Pufferfish",
+    "translation": "套用属性曲线"
+  },
+  {
+    "name": "Superimpose Surface",
+    "category": "Pufferfish",
+    "translation": "套用属性曲面"
+  },
+  {
+    "name": "Surface Degree",
+    "category": "Pufferfish",
+    "translation": "曲面次数"
+  },
+  {
+    "name": "Surface Edit Points",
+    "category": "Pufferfish",
+    "translation": "曲面编辑点"
+  },
+  {
+    "name": "Surface Spans",
+    "category": "Pufferfish",
+    "translation": "曲面跨度"
+  },
+  {
+    "name": "Surface Statistics",
+    "category": "Pufferfish",
+    "translation": "曲面统计"
+  },
+  {
+    "name": "Surface Trim Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "用曲面裁剪扭曲盒"
+  },
+  {
+    "name": "Swap Surface Directions",
+    "category": "Pufferfish",
+    "translation": "交换曲面方向"
+  },
+  {
+    "name": "Sweep Unsplit Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂扫掠曲面"
+  },
+  {
+    "name": "Thicken Twisted Box",
+    "category": "Pufferfish",
+    "translation": "加厚扭曲盒"
+  },
+  {
+    "name": "Transform Twisted Box",
+    "category": "Pufferfish",
+    "translation": "变换扭曲盒"
+  },
+  {
+    "name": "Trim Curve With Plane",
+    "category": "Pufferfish",
+    "translation": "用平面修剪曲线"
+  },
+  {
+    "name": "Trim Curve With Points",
+    "category": "Pufferfish",
+    "translation": "用点修剪曲线"
+  },
+  {
+    "name": "Trim Mesh With Plane",
+    "category": "Pufferfish",
+    "translation": "用平面修剪网格"
+  },
+  {
+    "name": "Trim Planes With Plane",
+    "category": "Pufferfish",
+    "translation": "用平面裁剪平面组"
+  },
+  {
+    "name": "Trim Points With Plane",
+    "category": "Pufferfish",
+    "translation": "用平面裁剪点组"
+  },
+  {
+    "name": "Trim Surface With Plane",
+    "category": "Pufferfish",
+    "translation": "用平面修剪曲面"
+  },
+  {
+    "name": "Tween Consecutive Colors",
+    "category": "Pufferfish",
+    "translation": "相邻补间颜色"
+  },
+  {
+    "name": "Tween Consecutive Curves",
+    "category": "Pufferfish",
+    "translation": "相邻补间曲线"
+  },
+  {
+    "name": "Tween Consecutive Curves Along Curve",
+    "category": "Pufferfish",
+    "translation": "相邻补间曲线沿曲线"
+  },
+  {
+    "name": "Tween Consecutive Curves On Surface",
+    "category": "Pufferfish",
+    "translation": "相邻补间曲线在曲面上"
+  },
+  {
+    "name": "Tween Consecutive Domains",
+    "category": "Pufferfish",
+    "translation": "相邻补间区间"
+  },
+  {
+    "name": "Tween Consecutive Domains²",
+    "category": "Pufferfish",
+    "translation": "相邻补间区间²"
+  },
+  {
+    "name": "Tween Consecutive Meshes",
+    "category": "Pufferfish",
+    "translation": "相邻补间网格"
+  },
+  {
+    "name": "Tween Consecutive Numbers",
+    "category": "Pufferfish",
+    "translation": "相邻补间数值"
+  },
+  {
+    "name": "Tween Consecutive Planes",
+    "category": "Pufferfish",
+    "translation": "相邻补间平面"
+  },
+  {
+    "name": "Tween Consecutive Planes On Curve",
+    "category": "Pufferfish",
+    "translation": "相邻补间平面在曲线上"
+  },
+  {
+    "name": "Tween Consecutive Planes On Surface",
+    "category": "Pufferfish",
+    "translation": "相邻补间平面在曲面上"
+  },
+  {
+    "name": "Tween Consecutive Points",
+    "category": "Pufferfish",
+    "translation": "相邻补间点"
+  },
+  {
+    "name": "Tween Consecutive Points On Curve",
+    "category": "Pufferfish",
+    "translation": "相邻补间点在曲线上"
+  },
+  {
+    "name": "Tween Consecutive Points On Surface",
+    "category": "Pufferfish",
+    "translation": "相邻补间点在曲面上"
+  },
+  {
+    "name": "Tween Consecutive SubDs",
+    "category": "Pufferfish",
+    "translation": "相邻细分曲面补间"
+  },
+  {
+    "name": "Tween Consecutive Surfaces",
+    "category": "Pufferfish",
+    "translation": "相邻补间曲面"
+  },
+  {
+    "name": "Tween Consecutive Transforms",
+    "category": "Pufferfish",
+    "translation": "相邻补间变换"
+  },
+  {
+    "name": "Tween Consecutive Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "相邻补间扭曲盒"
+  },
+  {
+    "name": "Tween Consecutive Vectors",
+    "category": "Pufferfish",
+    "translation": "相邻补间向量"
+  },
+  {
+    "name": "Tween Through Colors",
+    "category": "Pufferfish",
+    "translation": "贯穿补间颜色"
+  },
+  {
+    "name": "Tween Through Curves",
+    "category": "Pufferfish",
+    "translation": "贯穿补间曲线"
+  },
+  {
+    "name": "Tween Through Curves Along Curve",
+    "category": "Pufferfish",
+    "translation": "贯穿补间曲线沿曲线"
+  },
+  {
+    "name": "Tween Through Curves On Surface",
+    "category": "Pufferfish",
+    "translation": "贯穿补间曲线在曲面上"
+  },
+  {
+    "name": "Tween Through Domains",
+    "category": "Pufferfish",
+    "translation": "贯穿补间区间"
+  },
+  {
+    "name": "Tween Through Domains²",
+    "category": "Pufferfish",
+    "translation": "贯穿补间区间²"
+  },
+  {
+    "name": "Tween Through Meshes",
+    "category": "Pufferfish",
+    "translation": "贯穿补间网格"
+  },
+  {
+    "name": "Tween Through Numbers",
+    "category": "Pufferfish",
+    "translation": "贯穿补间数值"
+  },
+  {
+    "name": "Tween Through Planes",
+    "category": "Pufferfish",
+    "translation": "贯穿补间平面"
+  },
+  {
+    "name": "Tween Through Planes On Curve",
+    "category": "Pufferfish",
+    "translation": "贯穿补间平面在曲线上"
+  },
+  {
+    "name": "Tween Through Planes On Surface",
+    "category": "Pufferfish",
+    "translation": "贯穿补间平面在曲面上"
+  },
+  {
+    "name": "Tween Through Points",
+    "category": "Pufferfish",
+    "translation": "贯穿补间点"
+  },
+  {
+    "name": "Tween Through Points On Curve",
+    "category": "Pufferfish",
+    "translation": "贯穿补间点在曲线上"
+  },
+  {
+    "name": "Tween Through Points On Surface",
+    "category": "Pufferfish",
+    "translation": "贯穿补间点在曲面上"
+  },
+  {
+    "name": "Tween Through SubDs",
+    "category": "Pufferfish",
+    "translation": "贯穿细分曲面组补间"
+  },
+  {
+    "name": "Tween Through Surfaces",
+    "category": "Pufferfish",
+    "translation": "贯穿补间曲面"
+  },
+  {
+    "name": "Tween Through Transforms",
+    "category": "Pufferfish",
+    "translation": "贯穿补间变换"
+  },
+  {
+    "name": "Tween Through Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "贯穿补间扭曲盒"
+  },
+  {
+    "name": "Tween Through Vectors",
+    "category": "Pufferfish",
+    "translation": "贯穿补间向量"
+  },
+  {
+    "name": "Tween Two Colors",
+    "category": "Pufferfish",
+    "translation": "两者补间颜色"
+  },
+  {
+    "name": "Tween Two Curves",
+    "category": "Pufferfish",
+    "translation": "两者补间曲线"
+  },
+  {
+    "name": "Tween Two Curves Along Curve",
+    "category": "Pufferfish",
+    "translation": "两者补间曲线沿曲线"
+  },
+  {
+    "name": "Tween Two Curves On Surface",
+    "category": "Pufferfish",
+    "translation": "两者补间曲线在曲面上"
+  },
+  {
+    "name": "Tween Two Domains",
+    "category": "Pufferfish",
+    "translation": "两者补间区间"
+  },
+  {
+    "name": "Tween Two Domains²",
+    "category": "Pufferfish",
+    "translation": "两者补间区间²"
+  },
+  {
+    "name": "Tween Two Meshes",
+    "category": "Pufferfish",
+    "translation": "两者补间网格"
+  },
+  {
+    "name": "Tween Two Numbers",
+    "category": "Pufferfish",
+    "translation": "两者补间数值"
+  },
+  {
+    "name": "Tween Two Planes",
+    "category": "Pufferfish",
+    "translation": "两者补间平面"
+  },
+  {
+    "name": "Tween Two Planes On Curve",
+    "category": "Pufferfish",
+    "translation": "两者补间平面在曲线上"
+  },
+  {
+    "name": "Tween Two Planes On Surface",
+    "category": "Pufferfish",
+    "translation": "两者补间平面在曲面上"
+  },
+  {
+    "name": "Tween Two Points",
+    "category": "Pufferfish",
+    "translation": "两者补间点"
+  },
+  {
+    "name": "Tween Two Points On Curve",
+    "category": "Pufferfish",
+    "translation": "两者补间点在曲线上"
+  },
+  {
+    "name": "Tween Two Points On Surface",
+    "category": "Pufferfish",
+    "translation": "两者补间点在曲面上"
+  },
+  {
+    "name": "Tween Two SubDs",
+    "category": "Pufferfish",
+    "translation": "两细分曲面补间"
+  },
+  {
+    "name": "Tween Two Surfaces",
+    "category": "Pufferfish",
+    "translation": "两者补间曲面"
+  },
+  {
+    "name": "Tween Two Surfaces Along Curve",
+    "category": "Pufferfish",
+    "translation": "两者补间曲面沿曲线"
+  },
+  {
+    "name": "Tween Two Transforms",
+    "category": "Pufferfish",
+    "translation": "两者补间变换"
+  },
+  {
+    "name": "Tween Two Twisted Boxes",
+    "category": "Pufferfish",
+    "translation": "两者补间扭曲盒"
+  },
+  {
+    "name": "Tween Two Vectors",
+    "category": "Pufferfish",
+    "translation": "两者补间向量"
+  },
+  {
+    "name": "Twisted Box Array",
+    "category": "Pufferfish",
+    "translation": "扭曲盒阵列"
+  },
+  {
+    "name": "Twisted Box Centers",
+    "category": "Pufferfish",
+    "translation": "扭曲盒中心点"
+  },
+  {
+    "name": "Twisted Box Consecutive Curves",
+    "category": "Pufferfish",
+    "translation": "相邻曲线间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Consecutive Meshes",
+    "category": "Pufferfish",
+    "translation": "相邻网格间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Consecutive SubDs",
+    "category": "Pufferfish",
+    "translation": "相邻细分曲面间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Consecutive Surfaces",
+    "category": "Pufferfish",
+    "translation": "相邻曲面间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Corners",
+    "category": "Pufferfish",
+    "translation": "扭曲盒角点"
+  },
+  {
+    "name": "Twisted Box Curve",
+    "category": "Pufferfish",
+    "translation": "沿曲线扭曲盒"
+  },
+  {
+    "name": "Twisted Box Curve Variable",
+    "category": "Pufferfish",
+    "translation": "可变曲线扭曲盒"
+  },
+  {
+    "name": "Twisted Box Extrude",
+    "category": "Pufferfish",
+    "translation": "挤出扭曲盒"
+  },
+  {
+    "name": "Twisted Box Loft",
+    "category": "Pufferfish",
+    "translation": "放样扭曲盒"
+  },
+  {
+    "name": "Twisted Box Mesh",
+    "category": "Pufferfish",
+    "translation": "网格扭曲盒"
+  },
+  {
+    "name": "Twisted Box Pipe",
+    "category": "Pufferfish",
+    "translation": "圆管扭曲盒"
+  },
+  {
+    "name": "Twisted Box Pipe Variable",
+    "category": "Pufferfish",
+    "translation": "可变圆管扭曲盒"
+  },
+  {
+    "name": "Twisted Box Strip",
+    "category": "Pufferfish",
+    "translation": "条带扭曲盒"
+  },
+  {
+    "name": "Twisted Box Strip Variable",
+    "category": "Pufferfish",
+    "translation": "可变条带扭曲盒"
+  },
+  {
+    "name": "Twisted Box Strips",
+    "category": "Pufferfish",
+    "translation": "多条带扭曲盒"
+  },
+  {
+    "name": "Twisted Box SubD",
+    "category": "Pufferfish",
+    "translation": "细分曲面扭曲盒"
+  },
+  {
+    "name": "Twisted Box Surface",
+    "category": "Pufferfish",
+    "translation": "曲面扭曲盒"
+  },
+  {
+    "name": "Twisted Box Sweep",
+    "category": "Pufferfish",
+    "translation": "扫掠扭曲盒"
+  },
+  {
+    "name": "Twisted Box Sweep Variable",
+    "category": "Pufferfish",
+    "translation": "可变扫掠扭曲盒"
+  },
+  {
+    "name": "Twisted Box Through Curves",
+    "category": "Pufferfish",
+    "translation": "贯穿曲线组扭曲盒"
+  },
+  {
+    "name": "Twisted Box Through Meshes",
+    "category": "Pufferfish",
+    "translation": "贯穿网格组扭曲盒"
+  },
+  {
+    "name": "Twisted Box Through SubDs",
+    "category": "Pufferfish",
+    "translation": "贯穿细分曲面组扭曲盒"
+  },
+  {
+    "name": "Twisted Box Through Surfaces",
+    "category": "Pufferfish",
+    "translation": "贯穿曲面组扭曲盒"
+  },
+  {
+    "name": "Twisted Box Tube",
+    "category": "Pufferfish",
+    "translation": "空心管扭曲盒"
+  },
+  {
+    "name": "Twisted Box Tube Variable",
+    "category": "Pufferfish",
+    "translation": "可变空心管扭曲盒"
+  },
+  {
+    "name": "Twisted Box Two Curves",
+    "category": "Pufferfish",
+    "translation": "两曲线间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Two Meshes",
+    "category": "Pufferfish",
+    "translation": "两网格间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Two SubDs",
+    "category": "Pufferfish",
+    "translation": "两细分曲面间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Two Surfaces",
+    "category": "Pufferfish",
+    "translation": "两曲面间扭曲盒"
+  },
+  {
+    "name": "Twisted Box Volume",
+    "category": "Pufferfish",
+    "translation": "扭曲盒体积"
+  },
+  {
+    "name": "Two Way Domain",
+    "category": "Pufferfish",
+    "translation": "双向区间"
+  },
+  {
+    "name": "Two Way Domain²",
+    "category": "Pufferfish",
+    "translation": "双向二维区间"
+  },
+  {
+    "name": "Unroll Polysurface",
+    "category": "Pufferfish",
+    "translation": "展开多重曲面"
+  },
+  {
+    "name": "Unsplit Edge Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂边缘曲面"
+  },
+  {
+    "name": "Unsplit Extrude Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂挤出曲面"
+  },
+  {
+    "name": "Unsplit Loft Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂放样曲面"
+  },
+  {
+    "name": "Unsplit Rail Revolve Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂沿轨道旋转曲面"
+  },
+  {
+    "name": "Unsplit Revolve Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂旋转曲面"
+  },
+  {
+    "name": "Unsplit Sum Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂和曲面"
+  },
+  {
+    "name": "Unsplit Sweep Surface",
+    "category": "Pufferfish",
+    "translation": "不分裂扫掠曲面"
+  },
+  {
+    "name": "Vector Star",
+    "category": "Pufferfish",
+    "translation": "星形向量"
+  },
+  {
+    "name": "Vector World",
+    "category": "Pufferfish",
+    "translation": "世界方向向量"
+  },
+  {
+    "name": "Voxel Mesh",
+    "category": "Pufferfish",
+    "translation": "体素网格"
+  },
+  {
+    "name": "Weighted Average Curve",
+    "category": "Pufferfish",
+    "translation": "加权平均曲线"
+  },
+  {
+    "name": "Weighted Average Domain",
+    "category": "Pufferfish",
+    "translation": "加权平均区间"
+  },
+  {
+    "name": "Weighted Average Domain²",
+    "category": "Pufferfish",
+    "translation": "加权平均二维区间"
+  },
+  {
+    "name": "Weighted Average Mesh",
+    "category": "Pufferfish",
+    "translation": "加权平均网格"
+  },
+  {
+    "name": "Weighted Average Plane",
+    "category": "Pufferfish",
+    "translation": "加权平均平面"
+  },
+  {
+    "name": "Weighted Average SubD",
+    "category": "Pufferfish",
+    "translation": "加权平均细分曲面"
+  },
+  {
+    "name": "Weighted Average Surface",
+    "category": "Pufferfish",
+    "translation": "加权平均曲面"
+  },
+  {
+    "name": "Weighted Average Transform",
+    "category": "Pufferfish",
+    "translation": "加权平均变换"
+  },
+  {
+    "name": "Weighted Average Twisted Box",
+    "category": "Pufferfish",
+    "translation": "加权平均扭曲盒"
+  },
+  {
+    "name": "X Minus One",
+    "category": "Pufferfish",
+    "translation": "X减一"
+  },
+  {
+    "name": "X Plus One",
+    "category": "Pufferfish",
+    "translation": "X加一"
+  },
+  {
+    "name": "Zero Distance Tolerance",
+    "category": "Pufferfish",
+    "translation": "零距离容差"
+  },
+  {
+    "name": "Zeroed Transform",
+    "category": "Pufferfish",
+    "translation": "单位变换"
+  },
+  {
+    "name": "Accuracy",
+    "category": "port-name",
+    "translation": "精度"
+  },
+  {
+    "name": "Actual",
+    "category": "port-name",
+    "translation": "实际值"
+  },
+  {
+    "name": "Add One",
+    "category": "port-name",
+    "translation": "加一"
+  },
+  {
+    "name": "Adjusted",
+    "category": "port-name",
+    "translation": "调整后"
+  },
+  {
+    "name": "Align",
+    "category": "port-name",
+    "translation": "对齐"
+  },
+  {
+    "name": "Aligned",
+    "category": "port-name",
+    "translation": "已对齐"
+  },
+  {
+    "name": "Alpha",
+    "category": "port-name",
+    "translation": "透明度"
+  },
+  {
+    "name": "Alternate",
+    "category": "port-name",
+    "translation": "交替"
+  },
+  {
+    "name": "Amount",
+    "category": "port-name",
+    "translation": "数量"
+  },
+  {
+    "name": "Amount U",
+    "category": "port-name",
+    "translation": "数量 U"
+  },
+  {
+    "name": "Amount V",
+    "category": "port-name",
+    "translation": "数量 V"
+  },
+  {
+    "name": "Anchors",
+    "category": "port-name",
+    "translation": "锚点"
+  },
+  {
+    "name": "Angle",
+    "category": "port-name",
+    "translation": "角度"
+  },
+  {
+    "name": "Angle Tolerance",
+    "category": "port-name",
+    "translation": "角度容差"
+  },
+  {
+    "name": "Angle V",
+    "category": "port-name",
+    "translation": "角度 V"
+  },
+  {
+    "name": "Angle X",
+    "category": "port-name",
+    "translation": "角度 X"
+  },
+  {
+    "name": "Angle Y",
+    "category": "port-name",
+    "translation": "角度 Y"
+  },
+  {
+    "name": "Angle Z",
+    "category": "port-name",
+    "translation": "角度 Z"
+  },
+  {
+    "name": "Appended",
+    "category": "port-name",
+    "translation": "合并结果"
+  },
+  {
+    "name": "Arc",
+    "category": "port-name",
+    "translation": "圆弧"
+  },
+  {
+    "name": "Arc/Circle/Ellipse",
+    "category": "port-name",
+    "translation": "圆弧/圆/椭圆"
+  },
+  {
+    "name": "Area",
+    "category": "port-name",
+    "translation": "面积"
+  },
+  {
+    "name": "Area Tolerance",
+    "category": "port-name",
+    "translation": "面积容差"
+  },
+  {
+    "name": "Arithmetic mean",
+    "category": "port-name",
+    "translation": "算术平均值"
+  },
+  {
+    "name": "At i",
+    "category": "port-name",
+    "translation": "位于索引 i"
+  },
+  {
+    "name": "Automatic",
+    "category": "port-name",
+    "translation": "自动"
+  },
+  {
+    "name": "Axis",
+    "category": "port-name",
+    "translation": "轴线"
+  },
+  {
+    "name": "Axis 1",
+    "category": "port-name",
+    "translation": "轴 1"
+  },
+  {
+    "name": "Axis 2",
+    "category": "port-name",
+    "translation": "轴 2"
+  },
+  {
+    "name": "Axis 3",
+    "category": "port-name",
+    "translation": "轴 3"
+  },
+  {
+    "name": "Back",
+    "category": "port-name",
+    "translation": "后侧"
+  },
+  {
+    "name": "Base Mesh",
+    "category": "port-name",
+    "translation": "基准网格"
+  },
+  {
+    "name": "Blend",
+    "category": "port-name",
+    "translation": "混合"
+  },
+  {
+    "name": "Blend Type",
+    "category": "port-name",
+    "translation": "混合类型"
+  },
+  {
+    "name": "Boolean",
+    "category": "port-name",
+    "translation": "布尔值"
+  },
+  {
+    "name": "Boolean Type",
+    "category": "port-name",
+    "translation": "布尔运算类型"
+  },
+  {
+    "name": "Both Sides",
+    "category": "port-name",
+    "translation": "两侧"
+  },
+  {
+    "name": "Boundary",
+    "category": "port-name",
+    "translation": "边界"
+  },
+  {
+    "name": "Bounding",
+    "category": "port-name",
+    "translation": "包围"
+  },
+  {
+    "name": "Box",
+    "category": "port-name",
+    "translation": "盒"
+  },
+  {
+    "name": "Bulge",
+    "category": "port-name",
+    "translation": "凸度"
+  },
+  {
+    "name": "Cap",
+    "category": "port-name",
+    "translation": "封端"
+  },
+  {
+    "name": "Cap Type",
+    "category": "port-name",
+    "translation": "封端类型"
+  },
+  {
+    "name": "Cells",
+    "category": "port-name",
+    "translation": "单元格"
+  },
+  {
+    "name": "Center",
+    "category": "port-name",
+    "translation": "中心"
+  },
+  {
+    "name": "Center Type",
+    "category": "port-name",
+    "translation": "中心类型"
+  },
+  {
+    "name": "Centroid",
+    "category": "port-name",
+    "translation": "形心"
+  },
+  {
+    "name": "Circle",
+    "category": "port-name",
+    "translation": "圆"
+  },
+  {
+    "name": "Close Type",
+    "category": "port-name",
+    "translation": "闭合类型"
+  },
+  {
+    "name": "Closed",
+    "category": "port-name",
+    "translation": "闭合"
+  },
+  {
+    "name": "Closed U",
+    "category": "port-name",
+    "translation": "闭合 U"
+  },
+  {
+    "name": "Closed V",
+    "category": "port-name",
+    "translation": "闭合 V"
+  },
+  {
+    "name": "Closest",
+    "category": "port-name",
+    "translation": "最近"
+  },
+  {
+    "name": "Coiled",
+    "category": "port-name",
+    "translation": "螺旋点"
+  },
+  {
+    "name": "Collinear",
+    "category": "port-name",
+    "translation": "共线"
+  },
+  {
+    "name": "Color",
+    "category": "port-name",
+    "translation": "颜色"
+  },
+  {
+    "name": "Color A",
+    "category": "port-name",
+    "translation": "颜色 A"
+  },
+  {
+    "name": "Color B",
+    "category": "port-name",
+    "translation": "颜色 B"
+  },
+  {
+    "name": "Color Count",
+    "category": "port-name",
+    "translation": "颜色 数量"
+  },
+  {
+    "name": "Colored",
+    "category": "port-name",
+    "translation": "着色结果"
+  },
+  {
+    "name": "Colored Type",
+    "category": "port-name",
+    "translation": "颜色类型"
+  },
+  {
+    "name": "Colors",
+    "category": "port-name",
+    "translation": "颜色"
+  },
+  {
+    "name": "Compatibilized",
+    "category": "port-name",
+    "translation": "兼容结果"
+  },
+  {
+    "name": "Connection Type",
+    "category": "port-name",
+    "translation": "连接类型"
+  },
+  {
+    "name": "Continuity Type",
+    "category": "port-name",
+    "translation": "连续性类型"
+  },
+  {
+    "name": "Control Point Count",
+    "category": "port-name",
+    "translation": "控制点数"
+  },
+  {
+    "name": "Coordinates X",
+    "category": "port-name",
+    "translation": "坐标 X"
+  },
+  {
+    "name": "Coordinates Y",
+    "category": "port-name",
+    "translation": "坐标 Y"
+  },
+  {
+    "name": "Coordinates Z",
+    "category": "port-name",
+    "translation": "坐标 Z"
+  },
+  {
+    "name": "Coplanar",
+    "category": "port-name",
+    "translation": "共面"
+  },
+  {
+    "name": "Corner A",
+    "category": "port-name",
+    "translation": "角点 A"
+  },
+  {
+    "name": "Corner B",
+    "category": "port-name",
+    "translation": "角点 B"
+  },
+  {
+    "name": "Corner C",
+    "category": "port-name",
+    "translation": "角点 C"
+  },
+  {
+    "name": "Corner D",
+    "category": "port-name",
+    "translation": "角点 D"
+  },
+  {
+    "name": "Corner E",
+    "category": "port-name",
+    "translation": "角点 E"
+  },
+  {
+    "name": "Corner F",
+    "category": "port-name",
+    "translation": "角点 F"
+  },
+  {
+    "name": "Corner G",
+    "category": "port-name",
+    "translation": "角点 G"
+  },
+  {
+    "name": "Corner H",
+    "category": "port-name",
+    "translation": "角点 H"
+  },
+  {
+    "name": "Corner Type",
+    "category": "port-name",
+    "translation": "角点类型"
+  },
+  {
+    "name": "Corners",
+    "category": "port-name",
+    "translation": "角点"
+  },
+  {
+    "name": "Count",
+    "category": "port-name",
+    "translation": "数量"
+  },
+  {
+    "name": "Count Difference",
+    "category": "port-name",
+    "translation": "数量差"
+  },
+  {
+    "name": "Count U",
+    "category": "port-name",
+    "translation": "数量 U"
+  },
+  {
+    "name": "Count V",
+    "category": "port-name",
+    "translation": "数量 V"
+  },
+  {
+    "name": "Crease Type",
+    "category": "port-name",
+    "translation": "折痕类型"
+  },
+  {
+    "name": "Create Solid",
+    "category": "port-name",
+    "translation": "生成实体"
+  },
+  {
+    "name": "Cull Unused",
+    "category": "port-name",
+    "translation": "剔除未使用项"
+  },
+  {
+    "name": "Curve",
+    "category": "port-name",
+    "translation": "曲线"
+  },
+  {
+    "name": "Curve A",
+    "category": "port-name",
+    "translation": "曲线 A"
+  },
+  {
+    "name": "Curve B",
+    "category": "port-name",
+    "translation": "曲线 B"
+  },
+  {
+    "name": "Curves",
+    "category": "port-name",
+    "translation": "曲线集"
+  },
+  {
+    "name": "Curves U",
+    "category": "port-name",
+    "translation": "曲线 U"
+  },
+  {
+    "name": "Curves V",
+    "category": "port-name",
+    "translation": "曲线 V"
+  },
+  {
+    "name": "Curves X",
+    "category": "port-name",
+    "translation": "曲线 X"
+  },
+  {
+    "name": "Curves Y",
+    "category": "port-name",
+    "translation": "曲线 Y"
+  },
+  {
+    "name": "Decimal Place",
+    "category": "port-name",
+    "translation": "小数位"
+  },
+  {
+    "name": "Deconstruct Type",
+    "category": "port-name",
+    "translation": "解构类型"
+  },
+  {
+    "name": "Deconstructed",
+    "category": "port-name",
+    "translation": "解构结果"
+  },
+  {
+    "name": "Deformed",
+    "category": "port-name",
+    "translation": "变形结果"
+  },
+  {
+    "name": "Degree",
+    "category": "port-name",
+    "translation": "阶数"
+  },
+  {
+    "name": "Degree U",
+    "category": "port-name",
+    "translation": "次数 U"
+  },
+  {
+    "name": "Degree V",
+    "category": "port-name",
+    "translation": "次数 V"
+  },
+  {
+    "name": "Degrees",
+    "category": "port-name",
+    "translation": "角度/次数"
+  },
+  {
+    "name": "Degrees 1",
+    "category": "port-name",
+    "translation": "角度/次数 1"
+  },
+  {
+    "name": "Degrees 2",
+    "category": "port-name",
+    "translation": "角度/次数 2"
+  },
+  {
+    "name": "Degrees 3",
+    "category": "port-name",
+    "translation": "角度/次数 3"
+  },
+  {
+    "name": "Degrees C",
+    "category": "port-name",
+    "translation": "角度/次数 C"
+  },
+  {
+    "name": "Degrees F",
+    "category": "port-name",
+    "translation": "角度/次数 F"
+  },
+  {
+    "name": "Degrees R",
+    "category": "port-name",
+    "translation": "角度/次数 R"
+  },
+  {
+    "name": "Degrees U",
+    "category": "port-name",
+    "translation": "角度/次数 U"
+  },
+  {
+    "name": "Degrees V",
+    "category": "port-name",
+    "translation": "角度/次数 V"
+  },
+  {
+    "name": "Deviation Tolerance",
+    "category": "port-name",
+    "translation": "偏差容差"
+  },
+  {
+    "name": "Diameter",
+    "category": "port-name",
+    "translation": "直径"
+  },
+  {
+    "name": "Diameters",
+    "category": "port-name",
+    "translation": "直径"
+  },
+  {
+    "name": "Difference",
+    "category": "port-name",
+    "translation": "差值"
+  },
+  {
+    "name": "Dimension X",
+    "category": "port-name",
+    "translation": "尺寸 X"
+  },
+  {
+    "name": "Dimension Y",
+    "category": "port-name",
+    "translation": "尺寸 Y"
+  },
+  {
+    "name": "Dimension Z",
+    "category": "port-name",
+    "translation": "尺寸 Z"
+  },
+  {
+    "name": "Dimensionality",
+    "category": "port-name",
+    "translation": "维度"
+  },
+  {
+    "name": "Direction",
+    "category": "port-name",
+    "translation": "方向"
+  },
+  {
+    "name": "Direction Type",
+    "category": "port-name",
+    "translation": "方向类型"
+  },
+  {
+    "name": "Discrete",
+    "category": "port-name",
+    "translation": "离散"
+  },
+  {
+    "name": "Disjoint",
+    "category": "port-name",
+    "translation": "分离"
+  },
+  {
+    "name": "Displaced",
+    "category": "port-name",
+    "translation": "位移结果"
+  },
+  {
+    "name": "Distance",
+    "category": "port-name",
+    "translation": "距离"
+  },
+  {
+    "name": "Distances",
+    "category": "port-name",
+    "translation": "距离"
+  },
+  {
+    "name": "Distort",
+    "category": "port-name",
+    "translation": "扭曲"
+  },
+  {
+    "name": "Divided",
+    "category": "port-name",
+    "translation": "分割结果"
+  },
+  {
+    "name": "Division",
+    "category": "port-name",
+    "translation": "分割"
+  },
+  {
+    "name": "Division Type",
+    "category": "port-name",
+    "translation": "分割类型"
+  },
+  {
+    "name": "Divisions",
+    "category": "port-name",
+    "translation": "分割数"
+  },
+  {
+    "name": "Domain",
+    "category": "port-name",
+    "translation": "区间"
+  },
+  {
+    "name": "Domain A",
+    "category": "port-name",
+    "translation": "区间 A"
+  },
+  {
+    "name": "Domain B",
+    "category": "port-name",
+    "translation": "区间 B"
+  },
+  {
+    "name": "Domain U",
+    "category": "port-name",
+    "translation": "区间 U"
+  },
+  {
+    "name": "Domain V",
+    "category": "port-name",
+    "translation": "区间 V"
+  },
+  {
+    "name": "Domain X",
+    "category": "port-name",
+    "translation": "区间 X"
+  },
+  {
+    "name": "Domain Y",
+    "category": "port-name",
+    "translation": "区间 Y"
+  },
+  {
+    "name": "Domain Z",
+    "category": "port-name",
+    "translation": "区间 Z"
+  },
+  {
+    "name": "Domains",
+    "category": "port-name",
+    "translation": "区间"
+  },
+  {
+    "name": "Domain²",
+    "category": "port-name",
+    "translation": "二维区间"
+  },
+  {
+    "name": "Domain² A",
+    "category": "port-name",
+    "translation": "二维区间 A"
+  },
+  {
+    "name": "Domain² B",
+    "category": "port-name",
+    "translation": "二维区间 B"
+  },
+  {
+    "name": "Domain²s",
+    "category": "port-name",
+    "translation": "二维区间"
+  },
+  {
+    "name": "Edge",
+    "category": "port-name",
+    "translation": "边"
+  },
+  {
+    "name": "Edge 1",
+    "category": "port-name",
+    "translation": "边 1"
+  },
+  {
+    "name": "Edge 2",
+    "category": "port-name",
+    "translation": "边 2"
+  },
+  {
+    "name": "Edge 3",
+    "category": "port-name",
+    "translation": "边 3"
+  },
+  {
+    "name": "Edge 4",
+    "category": "port-name",
+    "translation": "边 4"
+  },
+  {
+    "name": "Edge Count",
+    "category": "port-name",
+    "translation": "边 数量"
+  },
+  {
+    "name": "Edge Index",
+    "category": "port-name",
+    "translation": "边 索引"
+  },
+  {
+    "name": "Edge Tolerance",
+    "category": "port-name",
+    "translation": "边 容差"
+  },
+  {
+    "name": "Edges",
+    "category": "port-name",
+    "translation": "边线集"
+  },
+  {
+    "name": "Edit Point Count",
+    "category": "port-name",
+    "translation": "编辑点数"
+  },
+  {
+    "name": "Ellipse",
+    "category": "port-name",
+    "translation": "椭圆"
+  },
+  {
+    "name": "Ellipsoid",
+    "category": "port-name",
+    "translation": "椭球"
+  },
+  {
+    "name": "End",
+    "category": "port-name",
+    "translation": "终点"
+  },
+  {
+    "name": "End Point",
+    "category": "port-name",
+    "translation": "终点"
+  },
+  {
+    "name": "End Tangents",
+    "category": "port-name",
+    "translation": "末端切向量"
+  },
+  {
+    "name": "End Type",
+    "category": "port-name",
+    "translation": "末端类型"
+  },
+  {
+    "name": "Ends",
+    "category": "port-name",
+    "translation": "结束值"
+  },
+  {
+    "name": "Ends U",
+    "category": "port-name",
+    "translation": "结束值 U"
+  },
+  {
+    "name": "Ends V",
+    "category": "port-name",
+    "translation": "结束值 V"
+  },
+  {
+    "name": "Equality",
+    "category": "port-name",
+    "translation": "相等"
+  },
+  {
+    "name": "Equalized",
+    "category": "port-name",
+    "translation": "均匀化"
+  },
+  {
+    "name": "Evaluation",
+    "category": "port-name",
+    "translation": "求值"
+  },
+  {
+    "name": "Evaluation Type",
+    "category": "port-name",
+    "translation": "求值类型"
+  },
+  {
+    "name": "Even",
+    "category": "port-name",
+    "translation": "偶数"
+  },
+  {
+    "name": "Explode",
+    "category": "port-name",
+    "translation": "分解"
+  },
+  {
+    "name": "Exponents",
+    "category": "port-name",
+    "translation": "指数"
+  },
+  {
+    "name": "Extent",
+    "category": "port-name",
+    "translation": "范围"
+  },
+  {
+    "name": "Extent U",
+    "category": "port-name",
+    "translation": "范围 U"
+  },
+  {
+    "name": "Extent V",
+    "category": "port-name",
+    "translation": "范围 V"
+  },
+  {
+    "name": "Extruded",
+    "category": "port-name",
+    "translation": "挤出结果"
+  },
+  {
+    "name": "Face Count",
+    "category": "port-name",
+    "translation": "面 数量"
+  },
+  {
+    "name": "Face Merge",
+    "category": "port-name",
+    "translation": "合并面"
+  },
+  {
+    "name": "Face Type",
+    "category": "port-name",
+    "translation": "面类型"
+  },
+  {
+    "name": "Factor",
+    "category": "port-name",
+    "translation": "系数"
+  },
+  {
+    "name": "Factor U",
+    "category": "port-name",
+    "translation": "因子 U"
+  },
+  {
+    "name": "Factor V",
+    "category": "port-name",
+    "translation": "因子 V"
+  },
+  {
+    "name": "Factor X",
+    "category": "port-name",
+    "translation": "因子 X"
+  },
+  {
+    "name": "Factor Y",
+    "category": "port-name",
+    "translation": "因子 Y"
+  },
+  {
+    "name": "Factor Z",
+    "category": "port-name",
+    "translation": "因子 Z"
+  },
+  {
+    "name": "Factors",
+    "category": "port-name",
+    "translation": "因子"
+  },
+  {
+    "name": "Falloffs",
+    "category": "port-name",
+    "translation": "衰减"
+  },
+  {
+    "name": "First Number",
+    "category": "port-name",
+    "translation": "第一个数"
+  },
+  {
+    "name": "Fit",
+    "category": "port-name",
+    "translation": "拟合"
+  },
+  {
+    "name": "Fitted",
+    "category": "port-name",
+    "translation": "拟合结果"
+  },
+  {
+    "name": "Flip",
+    "category": "port-name",
+    "translation": "反转"
+  },
+  {
+    "name": "Flip Normals",
+    "category": "port-name",
+    "translation": "反转法向量"
+  },
+  {
+    "name": "Flip X",
+    "category": "port-name",
+    "translation": "反转 X"
+  },
+  {
+    "name": "Flip Y",
+    "category": "port-name",
+    "translation": "反转 Y"
+  },
+  {
+    "name": "Flip Z",
+    "category": "port-name",
+    "translation": "反转 Z"
+  },
+  {
+    "name": "Flipped",
+    "category": "port-name",
+    "translation": "反转结果"
+  },
+  {
+    "name": "Front",
+    "category": "port-name",
+    "translation": "前侧"
+  },
+  {
+    "name": "Geometries",
+    "category": "port-name",
+    "translation": "几何对象"
+  },
+  {
+    "name": "Geometry",
+    "category": "port-name",
+    "translation": "几何"
+  },
+  {
+    "name": "Get Type",
+    "category": "port-name",
+    "translation": "获取类型"
+  },
+  {
+    "name": "Graph Curves",
+    "category": "port-name",
+    "translation": "图形曲线"
+  },
+  {
+    "name": "Graph Points",
+    "category": "port-name",
+    "translation": "图形点"
+  },
+  {
+    "name": "Grayscaled",
+    "category": "port-name",
+    "translation": "灰度结果"
+  },
+  {
+    "name": "Guide",
+    "category": "port-name",
+    "translation": "引导"
+  },
+  {
+    "name": "Guide 1",
+    "category": "port-name",
+    "translation": "引导 1"
+  },
+  {
+    "name": "Guide 2",
+    "category": "port-name",
+    "translation": "引导 2"
+  },
+  {
+    "name": "Highest",
+    "category": "port-name",
+    "translation": "最大值"
+  },
+  {
+    "name": "Hollow",
+    "category": "port-name",
+    "translation": "空心"
+  },
+  {
+    "name": "Identical Combine",
+    "category": "port-name",
+    "translation": "合并相同项"
+  },
+  {
+    "name": "Include",
+    "category": "port-name",
+    "translation": "包含"
+  },
+  {
+    "name": "Index",
+    "category": "port-name",
+    "translation": "索引"
+  },
+  {
+    "name": "Indices",
+    "category": "port-name",
+    "translation": "索引集"
+  },
+  {
+    "name": "Inequality",
+    "category": "port-name",
+    "translation": "不等"
+  },
+  {
+    "name": "Integer",
+    "category": "port-name",
+    "translation": "整数"
+  },
+  {
+    "name": "Interpolate Vertices",
+    "category": "port-name",
+    "translation": "插值顶点"
+  },
+  {
+    "name": "Interpolation Type",
+    "category": "port-name",
+    "translation": "插值类型"
+  },
+  {
+    "name": "Intersected",
+    "category": "port-name",
+    "translation": "相交状态"
+  },
+  {
+    "name": "Invert",
+    "category": "port-name",
+    "translation": "取反"
+  },
+  {
+    "name": "Inverted",
+    "category": "port-name",
+    "translation": "取反结果"
+  },
+  {
+    "name": "Isocurve",
+    "category": "port-name",
+    "translation": "等参线"
+  },
+  {
+    "name": "Items",
+    "category": "port-name",
+    "translation": "项目"
+  },
+  {
+    "name": "Iterative",
+    "category": "port-name",
+    "translation": "迭代"
+  },
+  {
+    "name": "Join",
+    "category": "port-name",
+    "translation": "连接"
+  },
+  {
+    "name": "Keep",
+    "category": "port-name",
+    "translation": "保留"
+  },
+  {
+    "name": "Keep Length",
+    "category": "port-name",
+    "translation": "保持长度"
+  },
+  {
+    "name": "Keep Type",
+    "category": "port-name",
+    "translation": "保留类型"
+  },
+  {
+    "name": "Kept Indicies",
+    "category": "port-name",
+    "translation": "保留索引"
+  },
+  {
+    "name": "Kink Point Count",
+    "category": "port-name",
+    "translation": "折角点数"
+  },
+  {
+    "name": "Kinked",
+    "category": "port-name",
+    "translation": "折角状态"
+  },
+  {
+    "name": "Kinks",
+    "category": "port-name",
+    "translation": "折角"
+  },
+  {
+    "name": "Knot Vector Count",
+    "category": "port-name",
+    "translation": "节点向量数"
+  },
+  {
+    "name": "Knots",
+    "category": "port-name",
+    "translation": "节点"
+  },
+  {
+    "name": "Labels",
+    "category": "port-name",
+    "translation": "标签"
+  },
+  {
+    "name": "Last",
+    "category": "port-name",
+    "translation": "最后"
+  },
+  {
+    "name": "Length",
+    "category": "port-name",
+    "translation": "长度"
+  },
+  {
+    "name": "Lengths",
+    "category": "port-name",
+    "translation": "长度"
+  },
+  {
+    "name": "Lengths U",
+    "category": "port-name",
+    "translation": "长度 U"
+  },
+  {
+    "name": "Lengths V",
+    "category": "port-name",
+    "translation": "长度 V"
+  },
+  {
+    "name": "Levels",
+    "category": "port-name",
+    "translation": "层级"
+  },
+  {
+    "name": "Linear",
+    "category": "port-name",
+    "translation": "线性"
+  },
+  {
+    "name": "Linearized",
+    "category": "port-name",
+    "translation": "线性化结果"
+  },
+  {
+    "name": "Lines",
+    "category": "port-name",
+    "translation": "直线"
+  },
+  {
+    "name": "List",
+    "category": "port-name",
+    "translation": "列表"
+  },
+  {
+    "name": "Location",
+    "category": "port-name",
+    "translation": "位置"
+  },
+  {
+    "name": "Locations",
+    "category": "port-name",
+    "translation": "位置"
+  },
+  {
+    "name": "Loft Type",
+    "category": "port-name",
+    "translation": "放样类型"
+  },
+  {
+    "name": "Lofted",
+    "category": "port-name",
+    "translation": "放样结果"
+  },
+  {
+    "name": "Loopback",
+    "category": "port-name",
+    "translation": "循环回接"
+  },
+  {
+    "name": "Loops",
+    "category": "port-name",
+    "translation": "环"
+  },
+  {
+    "name": "Lowest",
+    "category": "port-name",
+    "translation": "最小值"
+  },
+  {
+    "name": "Luminosity Type",
+    "category": "port-name",
+    "translation": "亮度类型"
+  },
+  {
+    "name": "Mapped",
+    "category": "port-name",
+    "translation": "映射结果"
+  },
+  {
+    "name": "Mapped Lines",
+    "category": "port-name",
+    "translation": "映射线"
+  },
+  {
+    "name": "Mapped Points",
+    "category": "port-name",
+    "translation": "映射点"
+  },
+  {
+    "name": "Mass Transform",
+    "category": "port-name",
+    "translation": "复合变换"
+  },
+  {
+    "name": "Mesh",
+    "category": "port-name",
+    "translation": "网格"
+  },
+  {
+    "name": "Mesh A",
+    "category": "port-name",
+    "translation": "网格 A"
+  },
+  {
+    "name": "Mesh B",
+    "category": "port-name",
+    "translation": "网格 B"
+  },
+  {
+    "name": "Meshes",
+    "category": "port-name",
+    "translation": "网格集"
+  },
+  {
+    "name": "Middle",
+    "category": "port-name",
+    "translation": "中间"
+  },
+  {
+    "name": "Minus One",
+    "category": "port-name",
+    "translation": "减一"
+  },
+  {
+    "name": "Mirror Cut",
+    "category": "port-name",
+    "translation": "镜像裁剪"
+  },
+  {
+    "name": "Mirror Index",
+    "category": "port-name",
+    "translation": "镜像索引"
+  },
+  {
+    "name": "Mirror Plane",
+    "category": "port-name",
+    "translation": "镜像平面"
+  },
+  {
+    "name": "Mirror Type",
+    "category": "port-name",
+    "translation": "镜像类型"
+  },
+  {
+    "name": "Mirrored",
+    "category": "port-name",
+    "translation": "镜像结果"
+  },
+  {
+    "name": "Morphed",
+    "category": "port-name",
+    "translation": "形变结果"
+  },
+  {
+    "name": "Motions",
+    "category": "port-name",
+    "translation": "位移向量"
+  },
+  {
+    "name": "Moved",
+    "category": "port-name",
+    "translation": "移动结果"
+  },
+  {
+    "name": "Multiplier R",
+    "category": "port-name",
+    "translation": "乘数 R"
+  },
+  {
+    "name": "Multiplier X",
+    "category": "port-name",
+    "translation": "乘数 X"
+  },
+  {
+    "name": "Naked",
+    "category": "port-name",
+    "translation": "裸边"
+  },
+  {
+    "name": "Nearest",
+    "category": "port-name",
+    "translation": "最近值"
+  },
+  {
+    "name": "Network",
+    "category": "port-name",
+    "translation": "网络"
+  },
+  {
+    "name": "New",
+    "category": "port-name",
+    "translation": "新"
+  },
+  {
+    "name": "Normal",
+    "category": "port-name",
+    "translation": "法向量"
+  },
+  {
+    "name": "Normalize",
+    "category": "port-name",
+    "translation": "归一化"
+  },
+  {
+    "name": "Normalized",
+    "category": "port-name",
+    "translation": "归一化"
+  },
+  {
+    "name": "Normals",
+    "category": "port-name",
+    "translation": "法向量集"
+  },
+  {
+    "name": "Not i",
+    "category": "port-name",
+    "translation": "不位于索引 i"
+  },
+  {
+    "name": "Null",
+    "category": "port-name",
+    "translation": "空值"
+  },
+  {
+    "name": "Number",
+    "category": "port-name",
+    "translation": "数值"
+  },
+  {
+    "name": "Number A",
+    "category": "port-name",
+    "translation": "数值 A"
+  },
+  {
+    "name": "Number B",
+    "category": "port-name",
+    "translation": "数值 B"
+  },
+  {
+    "name": "Number X",
+    "category": "port-name",
+    "translation": "X 数值"
+  },
+  {
+    "name": "Numbers",
+    "category": "port-name",
+    "translation": "数值列表"
+  },
+  {
+    "name": "Numbers X",
+    "category": "port-name",
+    "translation": "数值 X"
+  },
+  {
+    "name": "Numbers Y",
+    "category": "port-name",
+    "translation": "数值 Y"
+  },
+  {
+    "name": "Odd",
+    "category": "port-name",
+    "translation": "奇数"
+  },
+  {
+    "name": "Offset",
+    "category": "port-name",
+    "translation": "偏移量"
+  },
+  {
+    "name": "Offset Plane",
+    "category": "port-name",
+    "translation": "偏移平面"
+  },
+  {
+    "name": "Offset X",
+    "category": "port-name",
+    "translation": "偏移 X"
+  },
+  {
+    "name": "Offset Y",
+    "category": "port-name",
+    "translation": "偏移 Y"
+  },
+  {
+    "name": "Offset Z",
+    "category": "port-name",
+    "translation": "偏移 Z"
+  },
+  {
+    "name": "Offsets",
+    "category": "port-name",
+    "translation": "偏移"
+  },
+  {
+    "name": "Opened",
+    "category": "port-name",
+    "translation": "打开结果"
+  },
+  {
+    "name": "Openings",
+    "category": "port-name",
+    "translation": "开口"
+  },
+  {
+    "name": "Opposite",
+    "category": "port-name",
+    "translation": "反向"
+  },
+  {
+    "name": "Original",
+    "category": "port-name",
+    "translation": "原始"
+  },
+  {
+    "name": "Original E",
+    "category": "port-name",
+    "translation": "原始结束值"
+  },
+  {
+    "name": "Original EU",
+    "category": "port-name",
+    "translation": "原始 U 结束值"
+  },
+  {
+    "name": "Original EV",
+    "category": "port-name",
+    "translation": "原始 V 结束值"
+  },
+  {
+    "name": "Original S",
+    "category": "port-name",
+    "translation": "原始起始值"
+  },
+  {
+    "name": "Original SU",
+    "category": "port-name",
+    "translation": "原始 U 起始值"
+  },
+  {
+    "name": "Original SV",
+    "category": "port-name",
+    "translation": "原始 V 起始值"
+  },
+  {
+    "name": "Original U",
+    "category": "port-name",
+    "translation": "原始 U 值"
+  },
+  {
+    "name": "Original V",
+    "category": "port-name",
+    "translation": "原始 V 值"
+  },
+  {
+    "name": "Original X",
+    "category": "port-name",
+    "translation": "原始 X 值"
+  },
+  {
+    "name": "Original Y",
+    "category": "port-name",
+    "translation": "原始 Y 值"
+  },
+  {
+    "name": "Original Z",
+    "category": "port-name",
+    "translation": "原始 Z 值"
+  },
+  {
+    "name": "Out Of Bounds",
+    "category": "port-name",
+    "translation": "超出范围"
+  },
+  {
+    "name": "Parameter",
+    "category": "port-name",
+    "translation": "参数"
+  },
+  {
+    "name": "Parameter U",
+    "category": "port-name",
+    "translation": "参数 U"
+  },
+  {
+    "name": "Parameter V",
+    "category": "port-name",
+    "translation": "参数 V"
+  },
+  {
+    "name": "Parameter V1",
+    "category": "port-name",
+    "translation": "参数 V1"
+  },
+  {
+    "name": "Parameter V2",
+    "category": "port-name",
+    "translation": "参数 V2"
+  },
+  {
+    "name": "Parameter V3",
+    "category": "port-name",
+    "translation": "参数 V3"
+  },
+  {
+    "name": "Parameter V4",
+    "category": "port-name",
+    "translation": "参数 V4"
+  },
+  {
+    "name": "Parameter W",
+    "category": "port-name",
+    "translation": "参数 W"
+  },
+  {
+    "name": "Parameter X",
+    "category": "port-name",
+    "translation": "参数 X"
+  },
+  {
+    "name": "Parameter Y",
+    "category": "port-name",
+    "translation": "参数 Y"
+  },
+  {
+    "name": "Parameters",
+    "category": "port-name",
+    "translation": "参数集"
+  },
+  {
+    "name": "Parameters T",
+    "category": "port-name",
+    "translation": "参数 T"
+  },
+  {
+    "name": "Parameters T1",
+    "category": "port-name",
+    "translation": "参数 T1"
+  },
+  {
+    "name": "Parameters T2",
+    "category": "port-name",
+    "translation": "参数 T2"
+  },
+  {
+    "name": "Parameters T3",
+    "category": "port-name",
+    "translation": "参数 T3"
+  },
+  {
+    "name": "Parameters T4",
+    "category": "port-name",
+    "translation": "参数 T4"
+  },
+  {
+    "name": "Parameters U",
+    "category": "port-name",
+    "translation": "参数 U"
+  },
+  {
+    "name": "Parameters U1",
+    "category": "port-name",
+    "translation": "参数 U1"
+  },
+  {
+    "name": "Parameters U2",
+    "category": "port-name",
+    "translation": "参数 U2"
+  },
+  {
+    "name": "Parameters U3",
+    "category": "port-name",
+    "translation": "参数 U3"
+  },
+  {
+    "name": "Parameters U4",
+    "category": "port-name",
+    "translation": "参数 U4"
+  },
+  {
+    "name": "Parameters UV",
+    "category": "port-name",
+    "translation": "参数 UV"
+  },
+  {
+    "name": "Parameters V",
+    "category": "port-name",
+    "translation": "参数 V"
+  },
+  {
+    "name": "Parameters W",
+    "category": "port-name",
+    "translation": "参数 W"
+  },
+  {
+    "name": "Parameters X",
+    "category": "port-name",
+    "translation": "参数 X"
+  },
+  {
+    "name": "Parameters Y",
+    "category": "port-name",
+    "translation": "参数 Y"
+  },
+  {
+    "name": "Parameters Z",
+    "category": "port-name",
+    "translation": "参数 Z"
+  },
+  {
+    "name": "Partial",
+    "category": "port-name",
+    "translation": "中间结果"
+  },
+  {
+    "name": "Partial Transforms",
+    "category": "port-name",
+    "translation": "中间变换"
+  },
+  {
+    "name": "Partitions",
+    "category": "port-name",
+    "translation": "分段"
+  },
+  {
+    "name": "Percent",
+    "category": "port-name",
+    "translation": "百分比"
+  },
+  {
+    "name": "Percentage",
+    "category": "port-name",
+    "translation": "百分比"
+  },
+  {
+    "name": "Piece Count",
+    "category": "port-name",
+    "translation": "部分 数量"
+  },
+  {
+    "name": "Pinched & Spread",
+    "category": "port-name",
+    "translation": "收拢与扩散结果"
+  },
+  {
+    "name": "Piped",
+    "category": "port-name",
+    "translation": "管状结果"
+  },
+  {
+    "name": "Placeholders",
+    "category": "port-name",
+    "translation": "占位符"
+  },
+  {
+    "name": "Plane",
+    "category": "port-name",
+    "translation": "平面"
+  },
+  {
+    "name": "Plane 1",
+    "category": "port-name",
+    "translation": "平面 1"
+  },
+  {
+    "name": "Plane 2",
+    "category": "port-name",
+    "translation": "平面 2"
+  },
+  {
+    "name": "Plane 3",
+    "category": "port-name",
+    "translation": "平面 3"
+  },
+  {
+    "name": "Plane A",
+    "category": "port-name",
+    "translation": "平面 A"
+  },
+  {
+    "name": "Plane B",
+    "category": "port-name",
+    "translation": "平面 B"
+  },
+  {
+    "name": "Planes",
+    "category": "port-name",
+    "translation": "平面"
+  },
+  {
+    "name": "Plus One",
+    "category": "port-name",
+    "translation": "加一"
+  },
+  {
+    "name": "Point",
+    "category": "port-name",
+    "translation": "点"
+  },
+  {
+    "name": "Point A",
+    "category": "port-name",
+    "translation": "点 A"
+  },
+  {
+    "name": "Point B",
+    "category": "port-name",
+    "translation": "点 B"
+  },
+  {
+    "name": "Point End",
+    "category": "port-name",
+    "translation": "终点"
+  },
+  {
+    "name": "Point Sample",
+    "category": "port-name",
+    "translation": "采样点"
+  },
+  {
+    "name": "Point Start",
+    "category": "port-name",
+    "translation": "起点"
+  },
+  {
+    "name": "Points",
+    "category": "port-name",
+    "translation": "点集"
+  },
+  {
+    "name": "Points U",
+    "category": "port-name",
+    "translation": "点 U"
+  },
+  {
+    "name": "Points V",
+    "category": "port-name",
+    "translation": "点 V"
+  },
+  {
+    "name": "Polygon",
+    "category": "port-name",
+    "translation": "多边形"
+  },
+  {
+    "name": "Polyline",
+    "category": "port-name",
+    "translation": "多段线"
+  },
+  {
+    "name": "Polylines",
+    "category": "port-name",
+    "translation": "多段线"
+  },
+  {
+    "name": "Polysurface",
+    "category": "port-name",
+    "translation": "多重曲面"
+  },
+  {
+    "name": "Polysurfaces",
+    "category": "port-name",
+    "translation": "多重曲面"
+  },
+  {
+    "name": "Profile",
+    "category": "port-name",
+    "translation": "截面"
+  },
+  {
+    "name": "Prude",
+    "category": "port-name",
+    "translation": "平滑连接结果"
+  },
+  {
+    "name": "Quad Face Count",
+    "category": "port-name",
+    "translation": "四边面数"
+  },
+  {
+    "name": "Quadrangulate",
+    "category": "port-name",
+    "translation": "四边形化"
+  },
+  {
+    "name": "Quaternion",
+    "category": "port-name",
+    "translation": "四元数"
+  },
+  {
+    "name": "Radians",
+    "category": "port-name",
+    "translation": "弧度"
+  },
+  {
+    "name": "Radii",
+    "category": "port-name",
+    "translation": "半径"
+  },
+  {
+    "name": "Radius",
+    "category": "port-name",
+    "translation": "半径"
+  },
+  {
+    "name": "Radiuses",
+    "category": "port-name",
+    "translation": "半径"
+  },
+  {
+    "name": "Rail",
+    "category": "port-name",
+    "translation": "轨道"
+  },
+  {
+    "name": "Rail 1",
+    "category": "port-name",
+    "translation": "轨道 1"
+  },
+  {
+    "name": "Rail 2",
+    "category": "port-name",
+    "translation": "轨道 2"
+  },
+  {
+    "name": "Rail 3",
+    "category": "port-name",
+    "translation": "轨道 3"
+  },
+  {
+    "name": "Rails",
+    "category": "port-name",
+    "translation": "轨道"
+  },
+  {
+    "name": "Range",
+    "category": "port-name",
+    "translation": "范围"
+  },
+  {
+    "name": "Reach",
+    "category": "port-name",
+    "translation": "作用距离"
+  },
+  {
+    "name": "Reach Plane",
+    "category": "port-name",
+    "translation": "作用距离平面"
+  },
+  {
+    "name": "Rebuild Normals",
+    "category": "port-name",
+    "translation": "重算法向量"
+  },
+  {
+    "name": "Rebuilt",
+    "category": "port-name",
+    "translation": "重建结果"
+  },
+  {
+    "name": "Rectangle",
+    "category": "port-name",
+    "translation": "矩形"
+  },
+  {
+    "name": "Reduced",
+    "category": "port-name",
+    "translation": "简化结果"
+  },
+  {
+    "name": "Reference",
+    "category": "port-name",
+    "translation": "参考"
+  },
+  {
+    "name": "References",
+    "category": "port-name",
+    "translation": "参考"
+  },
+  {
+    "name": "Refit",
+    "category": "port-name",
+    "translation": "重新拟合"
+  },
+  {
+    "name": "Relocated",
+    "category": "port-name",
+    "translation": "重定位结果"
+  },
+  {
+    "name": "Remainder",
+    "category": "port-name",
+    "translation": "余数"
+  },
+  {
+    "name": "Remap Number x",
+    "category": "port-name",
+    "translation": "重映射数值 x"
+  },
+  {
+    "name": "Remap x",
+    "category": "port-name",
+    "translation": "重映射 x"
+  },
+  {
+    "name": "Remapped",
+    "category": "port-name",
+    "translation": "重映射结果"
+  },
+  {
+    "name": "Remapped Number x",
+    "category": "port-name",
+    "translation": "重映射后数值 x"
+  },
+  {
+    "name": "Remapped x",
+    "category": "port-name",
+    "translation": "重映射后 x"
+  },
+  {
+    "name": "Removal",
+    "category": "port-name",
+    "translation": "移除"
+  },
+  {
+    "name": "Reparameterized",
+    "category": "port-name",
+    "translation": "重新参数化结果"
+  },
+  {
+    "name": "Resolution",
+    "category": "port-name",
+    "translation": "分辨率"
+  },
+  {
+    "name": "Result Boolean",
+    "category": "port-name",
+    "translation": "结果布尔值"
+  },
+  {
+    "name": "Result Booleans",
+    "category": "port-name",
+    "translation": "结果布尔值"
+  },
+  {
+    "name": "Reverse U",
+    "category": "port-name",
+    "translation": "反转 U"
+  },
+  {
+    "name": "Reverse V",
+    "category": "port-name",
+    "translation": "反转 V"
+  },
+  {
+    "name": "Revolution",
+    "category": "port-name",
+    "translation": "旋转生成"
+  },
+  {
+    "name": "Rotated",
+    "category": "port-name",
+    "translation": "旋转结果"
+  },
+  {
+    "name": "Rotation",
+    "category": "port-name",
+    "translation": "旋转"
+  },
+  {
+    "name": "Rotation 1",
+    "category": "port-name",
+    "translation": "旋转 1"
+  },
+  {
+    "name": "Rotation 2",
+    "category": "port-name",
+    "translation": "旋转 2"
+  },
+  {
+    "name": "Rotations",
+    "category": "port-name",
+    "translation": "旋转"
+  },
+  {
+    "name": "Rotations 1",
+    "category": "port-name",
+    "translation": "旋转 1"
+  },
+  {
+    "name": "Rotations 2",
+    "category": "port-name",
+    "translation": "旋转 2"
+  },
+  {
+    "name": "Round Type",
+    "category": "port-name",
+    "translation": "舍入类型"
+  },
+  {
+    "name": "Rounded",
+    "category": "port-name",
+    "translation": "舍入结果"
+  },
+  {
+    "name": "Sample Point",
+    "category": "port-name",
+    "translation": "采样点"
+  },
+  {
+    "name": "Scale",
+    "category": "port-name",
+    "translation": "缩放"
+  },
+  {
+    "name": "Scaled",
+    "category": "port-name",
+    "translation": "缩放结果"
+  },
+  {
+    "name": "Seam",
+    "category": "port-name",
+    "translation": "接缝"
+  },
+  {
+    "name": "Seams",
+    "category": "port-name",
+    "translation": "接缝"
+  },
+  {
+    "name": "Search",
+    "category": "port-name",
+    "translation": "搜索"
+  },
+  {
+    "name": "Second Number",
+    "category": "port-name",
+    "translation": "第二个数"
+  },
+  {
+    "name": "Sections",
+    "category": "port-name",
+    "translation": "截面"
+  },
+  {
+    "name": "Segment Count",
+    "category": "port-name",
+    "translation": "曲线段 数量"
+  },
+  {
+    "name": "Segments",
+    "category": "port-name",
+    "translation": "分段"
+  },
+  {
+    "name": "Shell",
+    "category": "port-name",
+    "translation": "壳体"
+  },
+  {
+    "name": "Shrunken",
+    "category": "port-name",
+    "translation": "收缩结果"
+  },
+  {
+    "name": "Side",
+    "category": "port-name",
+    "translation": "侧"
+  },
+  {
+    "name": "Sides",
+    "category": "port-name",
+    "translation": "侧"
+  },
+  {
+    "name": "Singular 0",
+    "category": "port-name",
+    "translation": "奇点 0"
+  },
+  {
+    "name": "Singular 1",
+    "category": "port-name",
+    "translation": "奇点 1"
+  },
+  {
+    "name": "Singular 2",
+    "category": "port-name",
+    "translation": "奇点 2"
+  },
+  {
+    "name": "Singular 3",
+    "category": "port-name",
+    "translation": "奇点 3"
+  },
+  {
+    "name": "Size X",
+    "category": "port-name",
+    "translation": "尺寸 X"
+  },
+  {
+    "name": "Size Y",
+    "category": "port-name",
+    "translation": "尺寸 Y"
+  },
+  {
+    "name": "Size Z",
+    "category": "port-name",
+    "translation": "尺寸 Z"
+  },
+  {
+    "name": "Sizes X",
+    "category": "port-name",
+    "translation": "尺寸 X"
+  },
+  {
+    "name": "Sizes Y",
+    "category": "port-name",
+    "translation": "尺寸 Y"
+  },
+  {
+    "name": "Slid",
+    "category": "port-name",
+    "translation": "滑动结果"
+  },
+  {
+    "name": "Slid U",
+    "category": "port-name",
+    "translation": "滑动结果 U"
+  },
+  {
+    "name": "Slid V",
+    "category": "port-name",
+    "translation": "滑动结果 V"
+  },
+  {
+    "name": "Slide",
+    "category": "port-name",
+    "translation": "滑动"
+  },
+  {
+    "name": "Smoothed",
+    "category": "port-name",
+    "translation": "平滑结果"
+  },
+  {
+    "name": "Snap",
+    "category": "port-name",
+    "translation": "吸附"
+  },
+  {
+    "name": "Sorted Indices",
+    "category": "port-name",
+    "translation": "排序后索引"
+  },
+  {
+    "name": "Sorted Items",
+    "category": "port-name",
+    "translation": "排序后项目"
+  },
+  {
+    "name": "Sorted Points",
+    "category": "port-name",
+    "translation": "排序后点"
+  },
+  {
+    "name": "Source",
+    "category": "port-name",
+    "translation": "来源"
+  },
+  {
+    "name": "Span Count",
+    "category": "port-name",
+    "translation": "跨度 数量"
+  },
+  {
+    "name": "Spans Only",
+    "category": "port-name",
+    "translation": "仅跨度"
+  },
+  {
+    "name": "Split",
+    "category": "port-name",
+    "translation": "分割"
+  },
+  {
+    "name": "Split Index",
+    "category": "port-name",
+    "translation": "分割 索引"
+  },
+  {
+    "name": "Start",
+    "category": "port-name",
+    "translation": "起始值"
+  },
+  {
+    "name": "Start Type",
+    "category": "port-name",
+    "translation": "起始类型"
+  },
+  {
+    "name": "Starts",
+    "category": "port-name",
+    "translation": "起始值"
+  },
+  {
+    "name": "Starts U",
+    "category": "port-name",
+    "translation": "起始值 U"
+  },
+  {
+    "name": "Starts V",
+    "category": "port-name",
+    "translation": "起始值 V"
+  },
+  {
+    "name": "Steps",
+    "category": "port-name",
+    "translation": "步数"
+  },
+  {
+    "name": "Strength",
+    "category": "port-name",
+    "translation": "强度"
+  },
+  {
+    "name": "Strengths",
+    "category": "port-name",
+    "translation": "强度"
+  },
+  {
+    "name": "Sub-Domain U",
+    "category": "port-name",
+    "translation": "U 子区间"
+  },
+  {
+    "name": "Sub-Domain V",
+    "category": "port-name",
+    "translation": "V 子区间"
+  },
+  {
+    "name": "Sub-Domains",
+    "category": "port-name",
+    "translation": "子区间"
+  },
+  {
+    "name": "Sub-Domain²s",
+    "category": "port-name",
+    "translation": "二维子区间"
+  },
+  {
+    "name": "SubD",
+    "category": "port-name",
+    "translation": "细分曲面"
+  },
+  {
+    "name": "SubD A",
+    "category": "port-name",
+    "translation": "细分曲面 A"
+  },
+  {
+    "name": "SubD B",
+    "category": "port-name",
+    "translation": "细分曲面 B"
+  },
+  {
+    "name": "SubDs",
+    "category": "port-name",
+    "translation": "细分曲面"
+  },
+  {
+    "name": "Subdivided",
+    "category": "port-name",
+    "translation": "细分结果"
+  },
+  {
+    "name": "Subdivision Type",
+    "category": "port-name",
+    "translation": "细分类型"
+  },
+  {
+    "name": "Subtracted",
+    "category": "port-name",
+    "translation": "相减结果"
+  },
+  {
+    "name": "Superimposed",
+    "category": "port-name",
+    "translation": "套用结果"
+  },
+  {
+    "name": "Surface",
+    "category": "port-name",
+    "translation": "曲面"
+  },
+  {
+    "name": "Surface A",
+    "category": "port-name",
+    "translation": "曲面 A"
+  },
+  {
+    "name": "Surface B",
+    "category": "port-name",
+    "translation": "曲面 B"
+  },
+  {
+    "name": "Surfaces",
+    "category": "port-name",
+    "translation": "曲面"
+  },
+  {
+    "name": "Swap UV",
+    "category": "port-name",
+    "translation": "交换 UV"
+  },
+  {
+    "name": "Swapped",
+    "category": "port-name",
+    "translation": "交换结果"
+  },
+  {
+    "name": "Tangent",
+    "category": "port-name",
+    "translation": "切向量"
+  },
+  {
+    "name": "Tangents",
+    "category": "port-name",
+    "translation": "切向量"
+  },
+  {
+    "name": "Target",
+    "category": "port-name",
+    "translation": "目标"
+  },
+  {
+    "name": "Targets",
+    "category": "port-name",
+    "translation": "目标"
+  },
+  {
+    "name": "Text Size",
+    "category": "port-name",
+    "translation": "文字大小"
+  },
+  {
+    "name": "Thickened",
+    "category": "port-name",
+    "translation": "加厚结果"
+  },
+  {
+    "name": "Thickness",
+    "category": "port-name",
+    "translation": "厚度"
+  },
+  {
+    "name": "Thicknesses",
+    "category": "port-name",
+    "translation": "厚度"
+  },
+  {
+    "name": "Tolerance",
+    "category": "port-name",
+    "translation": "公差"
+  },
+  {
+    "name": "Transform",
+    "category": "port-name",
+    "translation": "变换"
+  },
+  {
+    "name": "Transform A",
+    "category": "port-name",
+    "translation": "变换 A"
+  },
+  {
+    "name": "Transform B",
+    "category": "port-name",
+    "translation": "变换 B"
+  },
+  {
+    "name": "Transformed",
+    "category": "port-name",
+    "translation": "变换结果"
+  },
+  {
+    "name": "Transforms",
+    "category": "port-name",
+    "translation": "变换"
+  },
+  {
+    "name": "Triangle Face Count",
+    "category": "port-name",
+    "translation": "三角面数"
+  },
+  {
+    "name": "Triangles",
+    "category": "port-name",
+    "translation": "三角形"
+  },
+  {
+    "name": "Triangulate",
+    "category": "port-name",
+    "translation": "三角化"
+  },
+  {
+    "name": "Trim Type",
+    "category": "port-name",
+    "translation": "修剪类型"
+  },
+  {
+    "name": "Trimmed",
+    "category": "port-name",
+    "translation": "修剪结果"
+  },
+  {
+    "name": "Trimmed Face Count",
+    "category": "port-name",
+    "translation": "已修剪面数"
+  },
+  {
+    "name": "Trims",
+    "category": "port-name",
+    "translation": "修剪边界"
+  },
+  {
+    "name": "Tween",
+    "category": "port-name",
+    "translation": "补间"
+  },
+  {
+    "name": "Tweens",
+    "category": "port-name",
+    "translation": "补间结果"
+  },
+  {
+    "name": "Twisted Box",
+    "category": "port-name",
+    "translation": "扭曲盒"
+  },
+  {
+    "name": "Twisted Box A",
+    "category": "port-name",
+    "translation": "扭曲盒 A"
+  },
+  {
+    "name": "Twisted Box B",
+    "category": "port-name",
+    "translation": "扭曲盒 B"
+  },
+  {
+    "name": "Twisted Boxes",
+    "category": "port-name",
+    "translation": "扭曲盒"
+  },
+  {
+    "name": "Underlying",
+    "category": "port-name",
+    "translation": "底层曲面"
+  },
+  {
+    "name": "Unify Normals",
+    "category": "port-name",
+    "translation": "统一法向量"
+  },
+  {
+    "name": "Union",
+    "category": "port-name",
+    "translation": "并集"
+  },
+  {
+    "name": "Unrolled",
+    "category": "port-name",
+    "translation": "展开结果"
+  },
+  {
+    "name": "Unrolled Curves",
+    "category": "port-name",
+    "translation": "展开后曲线"
+  },
+  {
+    "name": "Unrolled Points",
+    "category": "port-name",
+    "translation": "展开后点"
+  },
+  {
+    "name": "Unsplit",
+    "category": "port-name",
+    "translation": "不分裂"
+  },
+  {
+    "name": "Untrimmed Face Count",
+    "category": "port-name",
+    "translation": "未修剪面数"
+  },
+  {
+    "name": "Value Lines",
+    "category": "port-name",
+    "translation": "数值线"
+  },
+  {
+    "name": "Value Points",
+    "category": "port-name",
+    "translation": "数值点"
+  },
+  {
+    "name": "Values",
+    "category": "port-name",
+    "translation": "数值集"
+  },
+  {
+    "name": "Vector",
+    "category": "port-name",
+    "translation": "向量"
+  },
+  {
+    "name": "Vector A",
+    "category": "port-name",
+    "translation": "向量 A"
+  },
+  {
+    "name": "Vector B",
+    "category": "port-name",
+    "translation": "向量 B"
+  },
+  {
+    "name": "Vectors",
+    "category": "port-name",
+    "translation": "向量"
+  },
+  {
+    "name": "Vertex Count",
+    "category": "port-name",
+    "translation": "顶点 数量"
+  },
+  {
+    "name": "Volume",
+    "category": "port-name",
+    "translation": "体积"
+  },
+  {
+    "name": "Voxelized",
+    "category": "port-name",
+    "translation": "体素化结果"
+  },
+  {
+    "name": "Waved",
+    "category": "port-name",
+    "translation": "波浪点"
+  },
+  {
+    "name": "Weighted",
+    "category": "port-name",
+    "translation": "加权"
+  },
+  {
+    "name": "Weighted V",
+    "category": "port-name",
+    "translation": "加权 V"
+  },
+  {
+    "name": "Weights",
+    "category": "port-name",
+    "translation": "权重"
+  },
+  {
+    "name": "Weights 1",
+    "category": "port-name",
+    "translation": "权重 1"
+  },
+  {
+    "name": "Weights 2",
+    "category": "port-name",
+    "translation": "权重 2"
+  },
+  {
+    "name": "Weights U",
+    "category": "port-name",
+    "translation": "权重 U"
+  },
+  {
+    "name": "Weights V",
+    "category": "port-name",
+    "translation": "权重 V"
+  },
+  {
+    "name": "Weld Tolerance",
+    "category": "port-name",
+    "translation": "焊接容差"
+  },
+  {
+    "name": "Weld Vertices",
+    "category": "port-name",
+    "translation": "焊接顶点"
+  },
+  {
+    "name": "Whole",
+    "category": "port-name",
+    "translation": "整数部分"
+  },
+  {
+    "name": "X Axis",
+    "category": "port-name",
+    "translation": "X 轴"
+  },
+  {
+    "name": "Y Axis",
+    "category": "port-name",
+    "translation": "Y 轴"
+  },
+  {
+    "name": "Zeroed Transform",
+    "category": "port-name",
+    "translation": "单位变换"
+  }
+]

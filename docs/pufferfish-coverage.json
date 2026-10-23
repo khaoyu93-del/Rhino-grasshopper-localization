@@ -1,0 +1,161 @@
+{
+  "assembly": "Pufferfish",
+  "version": "3.0.0.0",
+  "extracted_components": 598,
+  "offline_instantiation_failures": [
+    {
+      "type": "Pufferfish.Components.Components_Number._3_Number.EqualityWithinTolerance_OBSOLETE",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Equality Within Tolerance",
+        "EqualsT",
+        "Test for equality of two numbers within a tolerance (|A - B| <= t).",
+        "Pufferfish",
+        "Number"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Number._3_Number.EqualityWithinTolerance",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Equality Within Tolerance",
+        "EqualsT",
+        "Test for equality of two numbers within a tolerance (|A - B| <= t).",
+        "Pufferfish",
+        "Number"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_TwistedBox._4_TwistedBox.TwistedBoxArray_OBSOLETE_2",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Twisted Box Array",
+        "TBoxArray",
+        "Create a layered array of connected twisted boxes in a box from domain dividing parameters.",
+        "Pufferfish",
+        "Twisted Box"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_TwistedBox._4_TwistedBox.TwistedBoxArray_OBSOLETE",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Twisted Box Array",
+        "TBoxArray",
+        "Create a layered array of connected twisted boxes in a box from domain dividing parameters.",
+        "Pufferfish",
+        "Twisted Box"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_TwistedBox._4_TwistedBox.TwistedBoxArray",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Twisted Box Array",
+        "TBoxArray",
+        "Create a layered array of connected twisted boxes in a box from domain dividing parameters.",
+        "Pufferfish",
+        "Twisted Box"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Surface._4_Surface.FitSurface_OBSOLETE_2",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Fit Surface",
+        "FitSrf",
+        "Fit a new surface through an existing surface when possible, without changing the general shape.",
+        "Pufferfish",
+        "Surface"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Surface._4_Surface.FitSurface_OBSOLETE",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Fit Surface",
+        "FitSrf",
+        "Fit a new surface through an existing surface when possible, without changing the general shape.",
+        "Pufferfish",
+        "Surface"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Surface._4_Surface.FitSurface",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Fit Surface",
+        "FitSrf",
+        "Fit a new surface through an existing surface when possible without changing the general shape, also works with trimmed surfaces.",
+        "Pufferfish",
+        "Surface"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Curve._6_Curve.OpenCurve_OBSOLETE",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Open Curve",
+        "OpnCrv",
+        "Open a closed curve from its seam, or shorten an open curve from its ends.",
+        "Pufferfish",
+        "Curve"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Curve._6_Curve.FitCurveSegments",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Fit Curve Segments",
+        "FitCrvSegs",
+        "Search a curve for segments at specified degrees and fit new curve segments through them to a specified degree, without changing the general shape.",
+        "Pufferfish",
+        "Curve"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Curve._6_Curve.FitCurveSmooth",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Fit Curve Smooth",
+        "FitCrvSmo",
+        "Fit a new curve through an existing curve with kink angle smoothing, without changing the general shape.",
+        "Pufferfish",
+        "Curve"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Curve._6_Curve.OpenCurve",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Open Curve",
+        "OpnCrv",
+        "Open a closed curve from its seam, or shorten an open curve from its ends.",
+        "Pufferfish",
+        "Curve"
+      ]
+    },
+    {
+      "type": "Pufferfish.Components.Components_Curve._6_Curve.PrudeCurve",
+      "error": "Unable to load DLL 'rhcommon_c' or one of its dependencies: 动态链接库(DLL)初始化例程失败。 (0x8007045A)",
+      "constructor": [
+        "Prude Curve",
+        "PrudeCrv",
+        "Removes the kinky parts of a curve (discontinuities) by blending the curve segments togther, if curve already has no kinks it will output with no change.",
+        "Pufferfish",
+        "Curve"
+      ]
+    }
+  ],
+  "component_types": 611,
+  "subd_user_objects": 10,
+  "unique_translations": {
+    "Pufferfish": 352,
+    "port-name": 537,
+    "description": 374,
+    "port-description": 1706,
+    "runtime": 308
+  },
+  "missing": [],
+  "scope": "Static component and SubD user-object metadata plus IL text coverage; GUI behavior not verified"
+}

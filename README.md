@@ -1,58 +1,64 @@
-# Grasshopper 1 简体中文界面：Rhino 8.2 适配包
+# Grasshopper 简体中文界面 + 河豚 3.0 离线安装包
 
-本仓库提供 [GrasshopperChinese](https://github.com/xiaofeng-1011/GrasshopperChinese) `0.3.0-preview` 在 **Windows Rhino 8 / Grasshopper 1 `8.2.23346.13001`** 上的本机编译安装包及操作记录。原项目的预编译插件引用 SDK `8.31.26126.13431`；本包使用同一版本的源码重新编译，使 `.gha` 引用本机的 `8.2.23346.13001` SDK。它不是 Rhino 官方汉化包，也不保证适用其他 Rhino 版本。
+当前成果适用于 **Windows Rhino 8 / Grasshopper 1**。离线包包含汉化源码、四份词库、Pufferfish 3.0 原插件及 10 个 WIP SubD 用户对象；不包含 Rhino、Grasshopper SDK 或 Raven 插件。
 
-## 下载与校验
+## 下载与最简安装
 
-- [Rhino 8.2 汉化安装包（ZIP）](downloads/GrasshopperChinese-0.3.0-preview-rhino8.2-win.zip)
-- [安装包 SHA-256 校验值](downloads/GrasshopperChinese-0.3.0-preview-rhino8.2-win.zip.sha256)
+- [最新版离线安装包](downloads/GrasshopperChinese-Rhino8-Pufferfish3-offline-setup.zip)
+- [ZIP 的 SHA-256 校验值](downloads/GrasshopperChinese-Rhino8-Pufferfish3-offline-setup.zip.sha256)
 
-先下载完整 ZIP 与 `.sha256`，不要只下载 `.gha`。在 PowerShell 中进入下载目录，执行：
+1. 目标电脑先安装 Rhino 8 和 Windows .NET Framework 4.8 或更高版本。**不用联网、不用 Python、不用管理员权限。**
+2. 保存工作，关闭全部 Rhino 窗口。
+3. 完整解压 ZIP 到普通文件夹，不要在压缩包内部运行。
+4. 双击 **`Setup.exe`**，点击“安装 / 更新”，看到“安装完成”后关闭窗口。
+5. 启动 Rhino 8，输入 `Grasshopper`。检查“中文界面”菜单、河豚分类和细分曲面分组。
 
-```powershell
-(Get-FileHash -Algorithm SHA256 .\GrasshopperChinese-0.3.0-preview-rhino8.2-win.zip).Hash.ToLowerInvariant()
-Get-Content .\GrasshopperChinese-0.3.0-preview-rhino8.2-win.zip.sha256
-```
+安装器会校验全部包文件、自动查找 Rhino 8，并直接调用 Windows 编译工具，使用目标电脑自带的 SDK 离线编译汉化插件。因此不会直接把本机 8.2 二进制当作通用版本安装。非默认路径可在安装窗口点击“选择 Rhino 8…”指定安装目录，无需输入命令。
 
-两行输出的 64 位十六进制哈希应一致；不一致时停止安装并重新下载。ZIP 内含 `Install.cmd` / `Install.ps1`、`Uninstall.cmd` / `Uninstall.ps1`，以及 `GrasshopperChinese` 子目录中的插件、两个词库、说明和上游版权声明。无需管理员权限，不包含 Rhino 程序文件。
+**新版安装器不调用 PowerShell，不执行 `.ps1` 或 `.cmd`，也不修改系统执行策略。** 它是正常的 Windows .NET Framework 应用程序。安装程序尚未数字签名；公司应用控制、SmartScreen、杀毒软件或权限限制仍可能阻止运行，此时请由管理员核验并批准，不要关闭安全软件或绕过强制策略。
 
-## 安装步骤
+## 自动备份与重复插件
 
-1. 在 Rhino 的“帮助 → 关于”确认版本。**本包只针对 Rhino / Grasshopper `8.2.23346.13001` 构建和初步验证**。若版本不同，请使用[原项目安装包](https://github.com/xiaofeng-1011/GrasshopperChinese)，或参照下方“其他 Rhino 8 版本”一节用本机 SDK 编译。不要把这个 `.gha` 当作通用 Rhino 8 插件。
-2. 关闭**全部** Rhino / Grasshopper 窗口。完整解压 ZIP 到一个普通文件夹，保持 `Install.cmd` 和 `GrasshopperChinese` 文件夹的相对位置，不要从 ZIP 压缩包内部直接运行脚本。
-3. 在文件管理器地址栏输入 `%APPDATA%\Grasshopper\Libraries`。检查有无 `GrasshopperChinese.gha`（根目录中的独立旧文件）以及 `GrasshopperChinese` 文件夹。如有现存文件，先备份到 **`Libraries` 外**：旧版本或个人修改不应被无提示覆盖；单独的 `.gha` 留在根目录还可能导致重复加载。不要删除其他插件或用户文件。
-4. 双击解压目录中的 `Install.cmd`，按提示运行。脚本在 Rhino 关闭时复制插件及词库到 `%APPDATA%\Grasshopper\Libraries\GrasshopperChinese`，并对已复制文件解除 Windows 下载标记。执行后确认该目录内有 `GrasshopperChinese.gha` 和 `Languages\zh-CN.json`、`Languages\tool-text.zh-CN.json`；`Libraries` 根目录不应再有第二份同名 `.gha`。
-5. 启动 Rhino 8，在命令行输入 `Grasshopper`。Grasshopper 的菜单栏应有“中文界面”；菜单中勾选“启用界面汉化”，按需要勾选“中英对照”。如果组件只显示图标，在 Grasshopper 的“显示 / Display”菜单中关闭“显示图标 / Draw Icons”以查看文字名称。
+- 汉化安装到 `%APPDATA%\Grasshopper\Libraries\GrasshopperChinese`。
+- 未安装河豚时，将原插件安装到 `Libraries\PufferfishChineseBundle`；10 个 SubD 用户对象安装到 `%APPDATA%\Grasshopper\UserObjects\PufferfishChineseBundle`。
+- 已有与包内完全相同的河豚原文件时保留原位置，不重复复制。发现多个版本、不同内容或同名修改版时会停止，**不会擅自删除原插件**。
+- 同名 SubD 用户对象相同则复用，不同则停止，防止覆盖个人修改。
+- 替换前备份旧文件；安装记录及备份在 `%LOCALAPPDATA%\GrasshopperChinese\OfflineInstaller`，不位于 Grasshopper 插件扫描目录。
+- 安装前先编译，编译不兼容时不会替换旧插件。复制失败时回滚此次替换。
+- 请保留安装器给出的备份目录，不要删除安装记录后再要求自动恢复旧版。
 
-安装脚本会覆盖**安装子目录中同名的文件**，不自动备份旧版本，也不会处理 `Libraries` 根目录中的独立 `.gha`。安装前的备份和旧文件排查不可省略。不要修改 Rhino 的 `Program Files` 安装目录。
+## 卸载与回退
 
-## 安装后的验证与已知限制
+关闭全部 Rhino 窗口，双击 **`Setup.exe`** 并点击“卸载并恢复旧版”。卸载器依据本包安装记录恢复被替换的旧文件，删除本包新增且未被修改的文件；不会删除原先安装的河豚、用户设置、个人修改或备份。原脚本版的安装记录也可读取。
 
-本机已确认 Rhino 进程加载 `GrasshopperChinese.gha`、Grasshopper 出现“中文界面”菜单，且“文件”菜单显示中文；当时未发现插件错误日志。建议用**副本**而非唯一的正式项目文件继续测试：
+安装后手动修改过的文件会保留并给出提示，不能保证自动完成卸载。无安装记录时停止，不会按文件名盲删。旧版若从其他途径安装，请自行用备份回退；也可在“中文界面”中取消“启用界面汉化”临时恢复英文。
 
-1. 展开原生分类并放置 Move、Circle 等常用组件，检查名称、图标/文字模式及工具提示；第三方插件可能保持英文。
-2. 测试画布搜索中文和英文、连线与求解结果、复制粘贴、撤销重做。
-3. 修改组件自定义昵称，切换中文/中英/关闭汉化，确认自定义昵称不丢失；保存 GH 与 GHX 文件，关闭后重新打开并比较组件、连线和结果。
-4. 如加载失败，检查 `Libraries` 中是否存在重复插件、词库是否与 `.gha` 相邻，以及 `%LOCALAPPDATA%\GrasshopperChinese\errors.log`（仅在插件写入异常时才会出现）。
+## 汉化范围与限制
 
-**尚未完成**上述搜索、拖放、求解、存档往返、不同 .NET 运行时及高清屏幕的完整图形界面验收。原项目仍是 `0.3.0-preview`：并非所有原生工具和说明都已翻译，输入输出参数、右键菜单、动态报错和部分特殊控件仍可能是英文；不支持 Rhino 7 或 macOS。中文模式下英文搜索还可能受 Grasshopper 搜索缓存影响。
+- 已匹配原生组件、Kangaroo2、河豚分类、下拉项、组件名称/说明、端口名称/说明和标准右键项。
+- 河豚静态词库包含 611 个组件类型和 10 个 WIP SubD 用户对象的元数据、模式说明及已提取的运行提示。静态导出有 13 个类型依赖 Rhino 原生状态，无法离线完整实例化；详细范围见源码仓库的 `docs/pufferfish-coverage.json`。
+- 补译指南针右键、中键圆盘及启动教程浏览器文字。右键菜单在原生窗口显示消息处理前翻译；保留菜单操作，仍需在目标电脑验收实际效果。
+- Raven 2.0.20 的左侧搜索/锁定界面有定向适配；**离线包不包含 Raven**，未安装 Raven 的电脑不需要它。
+- 画布汉化以显示层为主，绘制后恢复原始字段，保留自定义昵称。但搜索、拖放、求解、存档往返和全部自定义控件不能仅靠离线测试保证正确。
+- 新 `.gha` 加载后自动刷新已支持的词库，**不会为任意未知插件自动生成译文**，也不使用在线翻译。
+- 原作者注明 SubD 为 Rhino 7 专用的 WIP 用户对象；本包提供原文件和中文显示适配，Rhino 8 中的全部求解功能仍需用户验证。
 
-## 暂停、卸载与回退
+**已在本机 Rhino/Grasshopper `8.2.23346.13001` 多轮使用并由用户阶段性验收。其他 Rhino 8 小版本仅提供本机 SDK 编译机制，并未逐版本验收。** 插件内部仍依赖部分 Rhino 8 UI 结构，编译通过不代表每个界面都兼容。不支持 Rhino 7、macOS 或缺少 SDK 的电脑。
 
-- 临时关闭：在“中文界面”菜单取消勾选“启用界面汉化”，无需删文件。
-- 卸载：关闭全部 Rhino 窗口，再运行本包的 `Uninstall.cmd`。它只删除安装子目录中列出的插件、词库和随包文件，保留设置和用户自行添加的文件，可能留下空目录；**不会**删除 `Libraries` 根目录中曾经单独安装的 `.gha`。
-- 回退旧版：关闭 Rhino，按需要运行卸载脚本，再将你在第 3 步备份的旧版本**及其对应词库**恢复到原位置。恢复前确认 `Libraries` 中只有一份可加载的 `GrasshopperChinese.gha`。如果没有旧版备份，直接卸载后重启 Rhino 即可恢复原生英文界面。
+建议在副本文件中验收：河豚常用组件与 SubD、右键首次显示、教程启动页、中文/双语/英文切换、自定义昵称、保存关闭再打开。加载失败时检查重复 `.gha`、四份词库是否与插件相邻，以及 `%LOCALAPPDATA%\GrasshopperChinese\errors.log`。
 
-## 其他 Rhino 8 版本：本机重新编译
+## 离线包内容和完整性
 
-不同版本的 SDK 可能不兼容，不建议直接复用本包的 `.gha`。如果需要适配自己的 Rhino 8 版本，从[原项目](https://github.com/xiaofeng-1011/GrasshopperChinese)取得同版本源码包并完整解压，在已安装目标 Rhino 的 Windows 机器上关闭 Rhino，从源码根目录执行：
+ZIP 内有 `Setup.exe`、`package-manifest.json`、`src`、`Languages`、`GrasshopperChinese`、`Pufferfish` 与版权说明，不包含安装用 PowerShell 脚本。预编译 `.gha` 仅为本机参考，安装器实际使用目标电脑 SDK 编译。
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\build.ps1 -RhinoRoot "C:\Program Files\Rhino 8"
-```
+`package-manifest.json` 校验文件是否完整，不是数字签名。ZIP 的 `.sha256` 用于核对传输是否损坏，也不能证明来源可信；只使用来自可信发布者的包。
 
-安装路径不同则调整 `-RhinoRoot`。构建需要 Windows 自带的 .NET Framework C# 编译器；成功后会生成 `build\GrasshopperChinese\GrasshopperChinese.gha`。备份并替换安装子目录中的 `.gha`，**保留与源码版本匹配的 `Languages` 词库**，重新启动 Rhino 并完成上面的验证步骤。本包未包含原项目源码；构建或进一步修改应从原项目获取源码和许可信息。
+源码开发的构建命令仍是 `scripts/build.ps1`；制作离线包使用 `scripts/package-offline.ps1`。用户安装不需要这些开发脚本、测试工具或 Python。旧 `0.3.0-preview-rhino8.2-win.zip` 保留作历史记录，不含当前成果。
 
 ## 来源与许可
 
-插件、词库和安装脚本来自 [xiaofeng-1011/GrasshopperChinese](https://github.com/xiaofeng-1011/GrasshopperChinese) `0.3.0-preview`，本包仅将插件针对 Rhino 8.2 SDK 重新编译。发布者已确认拥有本次再分发授权；原项目 README 指出新增代码尚未指定统一开源许可证，本仓库**不宣称这些新增代码采用 MIT 许可，也不授予额外的修改或再分发许可**。其中复用的 MultilingualGH 部分遵循 Victor Lin 的 MIT 许可，原版权声明及第三方告知保留在 ZIP 内。其他版本、源码及后续更新请以原项目的许可和说明为准。
+本项目参考 [GrasshopperChinese](https://github.com/xiaofeng-1011/GrasshopperChinese) `0.3.0-preview`，复用的 MultilingualGH 资源遵守 Victor Lin 的 MIT 许可，见 `LICENSE-MultilingualGH.txt` 和 `THIRD-PARTY-NOTICES.md`。
+
+河豚 3.0 作者为 Michael Pryor（ekimroyrp）。发布者已确认取得本包的再分发授权；原插件和 SubD 文件未修改，作者安装说明保留在 `Pufferfish/AUTHOR-NOTES.txt`。此授权确认不向收件人授予额外再分发权，也不表示河豚适用 MIT 许可。
+
+原汉化项目的新增代码尚未指定统一开源许可证，本仓库不宣称全部代码采用 MIT，也不授予额外修改或再分发许可。不得将 Rhino 程序、SDK、Raven 或个人文件混入离线包。没有额外要求时不上传 GitHub、不提交代码、不替换历史 ZIP。
