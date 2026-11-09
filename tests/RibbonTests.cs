@@ -65,6 +65,17 @@ class RibbonTests
             adapter.ApplyTab(pufferfishTab, false, false);
             adapter.ApplyPanel(pufferfishPanel, "Pufferfish", false, false);
             Equal("Pufferfish", pufferfishTab.NameFull); Equal("Twisted Box", pufferfishPanel.Name);
+            var richTab = (GH_RibbonTab)FormatterServices.GetUninitializedObject(typeof(GH_RibbonTab));
+            foreach (var name in new[] { "m_nameFull", "m_nameShort", "m_nameSymbol" })
+                typeof(GH_RibbonTab).GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(richTab, name == "m_nameSymbol" ? "R" : "RichedGraphMapper");
+            var richPanel = (GH_RibbonPanel)FormatterServices.GetUninitializedObject(typeof(GH_RibbonPanel));
+            richPanel.Name = "Mapping";
+            adapter.ApplyTab(richTab, true, false); adapter.ApplyPanel(richPanel, "RichedGraphMapper", true, false);
+            Equal("图形映射器", richTab.NameFull); Equal("映射", richPanel.Name);
+            adapter.ApplyTab(richTab, true, true); adapter.ApplyPanel(richPanel, "RichedGraphMapper", true, true);
+            Equal("图形映射器 · RichedGraphMapper", richTab.NameFull); Equal("映射 · Mapping", richPanel.Name);
+            adapter.ApplyTab(richTab, false, false); adapter.ApplyPanel(richPanel, "RichedGraphMapper", false, false);
+            Equal("RichedGraphMapper", richTab.NameFull); Equal("Mapping", richPanel.Name);
             Equal("公鸡", RibbonTranslator.Translate("公鸡", false));
             Console.WriteLine("PASS real SDK ribbon names: Chinese, bilingual, repeated updates, exact restoration, unknown-plugin isolation");
             return 0;

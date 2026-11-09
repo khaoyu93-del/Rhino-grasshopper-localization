@@ -14,8 +14,9 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using GrasshopperChinese;
 
-[assembly: AssemblyTitle("Grasshopper Offline Setup")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyTitle("Grasshopper Offline Setup 0.3.1")]
+[assembly: AssemblyVersion("0.3.1.0")]
+[assembly: AssemblyFileVersion("0.3.1.0")]
 
 namespace GrasshopperOfflineSetup
 {
@@ -112,7 +113,7 @@ namespace GrasshopperOfflineSetup
 
     sealed class Installer
     {
-        internal static readonly string[] Packs = { "zh-CN.json", "tool-text.zh-CN.json", "pufferfish.zh-CN.json", "pufferfish-text.zh-CN.json" };
+        internal static readonly string[] Packs = { "zh-CN.json", "tool-text.zh-CN.json", "pufferfish.zh-CN.json", "pufferfish-text.zh-CN.json", "richedgraphmapper.zh-CN.json" };
         static readonly string[] Notices = { "README.md", "THIRD-PARTY-NOTICES.md", "LICENSE-MultilingualGH.txt" };
         readonly Options options;
         readonly Action<string> report;
@@ -352,8 +353,9 @@ namespace GrasshopperOfflineSetup
             return receipt;
         }
 
-        List<CopyPlan> Plan(PackageManifest manifest)
+        List<CopyPlan> Plan(PackageManifest manifest, Receipt previous, out List<InstalledFile> retired)
         {
+            retired = new List<InstalledFile>();
             var plan = Packs.Select(name => new CopyPlan { Source = Path.Combine(options.PackageRoot, "Languages", name), Target = Path.Combine(localization, "Languages", name) }).ToList();
             plan.AddRange(Notices.Select(name => new CopyPlan { Source = Path.Combine(options.PackageRoot, name), Target = Path.Combine(localization, name) }));
             string fish = Path.Combine(options.PackageRoot, "Pufferfish", "Pufferfish3-0.gha");
@@ -380,18 +382,32 @@ namespace GrasshopperOfflineSetup
                 plan.Add(new CopyPlan { Source = fish, Target = Path.Combine(fishDestination, "Pufferfish3-0.gha") });
                 plan.Add(new CopyPlan { Source = Path.Combine(options.PackageRoot, "Pufferfish", "AUTHOR-NOTES.txt"), Target = Path.Combine(fishDestination, "AUTHOR-NOTES.txt") });
             }
+            var existingSubD = new[] { options.UserObjects, options.Packages }.SelectMany(root => FindFiles(root, "*.ghuser")).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
             foreach (var entry in manifest.Files.Where(file => file.Path.StartsWith("Pufferfish\\SubD\\", StringComparison.OrdinalIgnoreCase) && file.Path.EndsWith(".ghuser", StringComparison.OrdinalIgnoreCase)))
             {
                 string source = Path.Combine(options.PackageRoot, entry.Path);
                 string name = Path.GetFileName(source);
-                var existing = FindFiles(options.UserObjects, name).ToList();
-                if (existing.Count > 1) throw new IOException("发现重复 SubD 用户对象：" + name);
-                string external = existing.FirstOrDefault(file => !Within(file, subdDestination));
-                if (external != null)
+                string target = Path.Combine(subdDestination, name);
+                string sourceHash = Hash(source);
+                var existing = existingSubD.Where(file => string.Equals(Path.GetFileName(file), name, StringComparison.OrdinalIgnoreCase)).ToList();
+                var external = existing.Where(file => !string.Equals(file, target, StringComparison.OrdinalIgnoreCase)).ToList();
+                if (external.Count > 1) throw new IOException("发现多份外部 SubD 用户对象，请保留备份并先处理重复版本：" + name);
+                if (external.Count == 0)
                 {
-                    if (!SameHash(Hash(external), Hash(source))) throw new IOException("现有 SubD 对象有不同内容或个人修改，不会覆盖：" + external);
+                    plan.Add(new CopyPlan { Source = source, Target = target });
+                    continue;
                 }
-                else plan.Add(new CopyPlan { Source = source, Target = Path.Combine(subdDestination, name) });
+                if (!SameHash(Hash(external[0]), sourceHash)) throw new IOException("现有 SubD 对象有不同内容或个人修改，不会覆盖：" + external[0]);
+                var old = previous == null ? null : previous.Files.FirstOrDefault(file => string.Equals(file.Target, target, StringComparison.OrdinalIgnoreCase));
+                if (old != null)
+                {
+                    if (!string.IsNullOrEmpty(old.OriginalBackup) || !SameHash(old.Hash, sourceHash))
+                        throw new IOException("本包 SubD 有受保护的原文件备份或不同内容，请先备份并整理：" + target);
+                    if (File.Exists(target) && !SameHash(Hash(target), old.Hash)) throw new IOException("本包 SubD 有个人修改，不会移除：" + target);
+                    retired.Add(old);
+                }
+                else if (File.Exists(target)) throw new IOException("发现未由本安装器记录的重复 SubD 用户对象，不会自动移除：" + target);
+                report("复用已有 SubD 用户对象：" + external[0]);
             }
             return plan;
         }
@@ -408,9 +424,10 @@ namespace GrasshopperOfflineSetup
         {
             RequireRhinoClosed();
             var manifest = ValidatePackage();
-            var plan = Plan(manifest);
             RequireNoLinks(options.State);
             var previous = ReadReceipt(false);
+            List<InstalledFile> retired;
+            var plan = Plan(manifest, previous, out retired);
             foreach (var entry in plan)
             {
                 RequireNoLinks(entry.Target);
@@ -423,6 +440,8 @@ namespace GrasshopperOfflineSetup
             string staging = Path.Combine(options.State, "Staging-" + run);
             string backup = Path.Combine(options.State, "Backups", run);
             var changes = new List<Change>();
+            string previousReceipt = null;
+            bool receiptTouched = false;
             try
             {
                 Directory.CreateDirectory(staging);
@@ -433,10 +452,32 @@ namespace GrasshopperOfflineSetup
                 if (Directory.Exists(plugin)) throw new IOException("插件目标被同名目录占用。");
                 var oldPlugin = previous == null ? null : previous.Files.FirstOrDefault(file => string.Equals(file.Target, plugin, StringComparison.OrdinalIgnoreCase));
                 if (oldPlugin != null && (!File.Exists(plugin) || !SameHash(Hash(plugin), oldPlugin.Hash))) throw new IOException("原汉化插件有个人修改，不会覆盖。");
-                plan.Add(new CopyPlan { Source = compiled, Target = plugin });
                 RequireRhinoClosed();
+                plan = Plan(manifest, previous, out retired);
+                plan.Add(new CopyPlan { Source = compiled, Target = plugin });
                 Directory.CreateDirectory(backup);
-                if (File.Exists(receiptPath)) CopyVerified(receiptPath, Path.Combine(backup, "previous-installation.json"));
+                if (File.Exists(receiptPath))
+                {
+                    previousReceipt = Path.Combine(backup, "previous-installation.json");
+                    CopyVerified(receiptPath, previousReceipt);
+                }
+                var retiredChanges = new List<Change>();
+                for (int i = 0; i < retired.Count; i++)
+                {
+                    var file = retired[i];
+                    if (!File.Exists(file.Target)) continue;
+                    if (!SameHash(Hash(file.Target), file.Hash)) throw new IOException("安装期间 SubD 文件发生变化：" + file.Target);
+                    string prior = Path.Combine(backup, "subd-retired-" + i.ToString("D3") + ".backup");
+                    CopyVerified(file.Target, prior);
+                    retiredChanges.Add(new Change { Target = file.Target, Prior = prior });
+                }
+                foreach (var change in retiredChanges)
+                {
+                    if (!SameHash(Hash(change.Target), Hash(change.Prior))) throw new IOException("安装期间 SubD 文件发生变化：" + change.Target);
+                    changes.Add(change);
+                    File.Delete(change.Target);
+                    report("已备份并移出本包重复 SubD：" + change.Target);
+                }
                 var records = new List<InstalledFile>();
                 report("正在备份并安装汉化、河豚和 SubD 用户对象……");
                 for (int i = 0; i < plan.Count; i++)
@@ -454,7 +495,8 @@ namespace GrasshopperOfflineSetup
                     CopyVerified(entry.Source, entry.Target);
                     records.Add(new InstalledFile { Target = entry.Target, Hash = Hash(entry.Target), OriginalBackup = old == null ? prior : old.OriginalBackup });
                 }
-                if (previous != null) records.AddRange(previous.Files.Where(file => !records.Any(record => string.Equals(record.Target, file.Target, StringComparison.OrdinalIgnoreCase))));
+                if (previous != null) records.AddRange(previous.Files.Where(file => !retired.Contains(file) && !records.Any(record => string.Equals(record.Target, file.Target, StringComparison.OrdinalIgnoreCase))));
+                receiptTouched = true;
                 WriteReceipt(receiptPath, new Receipt { Package = manifest.Package, InstalledAt = DateTime.Now.ToString("o"), Sdk = sdk.ToString(), Libraries = options.Libraries, UserObjects = options.UserObjects, Files = records });
                 report("安装完成：" + localization);
                 report("旧文件备份：" + backup);
@@ -474,6 +516,18 @@ namespace GrasshopperOfflineSetup
                         else if (File.Exists(change.Target)) File.Delete(change.Target);
                     }
                     catch (Exception ex) { report("回滚未完成，请保留备份 " + backup + "：" + ex.Message); }
+                }
+                if (receiptTouched)
+                {
+                    try
+                    {
+                        if (previousReceipt != null)
+                        {
+                            if (!File.Exists(receiptPath) || !SameHash(Hash(receiptPath), Hash(previousReceipt))) CopyVerified(previousReceipt, receiptPath);
+                        }
+                        else if (File.Exists(receiptPath)) File.Delete(receiptPath);
+                    }
+                    catch (Exception ex) { report("安装记录回滚未完成，请保留备份 " + backup + "：" + ex.Message); }
                 }
                 throw;
             }
@@ -521,7 +575,7 @@ namespace GrasshopperOfflineSetup
         internal SetupForm(Options options)
         {
             this.options = options;
-            Text = "Grasshopper 汉化 + 河豚 3.0 离线安装";
+            Text = "Grasshopper 汉化 0.3.1 + 河豚 3.0 离线安装";
             Font = new Font("Microsoft YaHei UI", 9F);
             ClientSize = new Size(720, 460);
             MinimumSize = new Size(620, 400);
@@ -533,7 +587,7 @@ namespace GrasshopperOfflineSetup
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            var introduction = new Label { Text = "请先保存工作并关闭 Rhino。完整解压后点击安装。\n全程离线；不使用 PowerShell，不改变系统安全策略。", AutoSize = true, Padding = new Padding(0, 0, 0, 12) };
+            var introduction = new Label { Text = "请先保存工作并关闭 Rhino。完整解压后点击安装。\n全程离线；不使用 PowerShell，不改变系统安全策略。\n支持已安装的 Rich Graph Mapper 汉化；本包不包含该插件本体。", AutoSize = true, Padding = new Padding(0, 0, 0, 12) };
             layout.Controls.Add(introduction, 0, 0); layout.SetColumnSpan(introduction, 2);
             layout.Controls.Add(rhino, 0, 1); layout.Controls.Add(browse, 1, 1);
             layout.Controls.Add(output, 0, 2); layout.SetColumnSpan(output, 2);

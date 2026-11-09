@@ -13,13 +13,14 @@ namespace GrasshopperChinese
         readonly ConditionalWeakTable<GH_RibbonPanel, PanelName> panels = new ConditionalWeakTable<GH_RibbonPanel, PanelName>();
         static readonly FieldInfo full = Field("m_nameFull"), shortName = Field("m_nameShort"), symbol = Field("m_nameSymbol");
         static readonly HashSet<string> categories = new HashSet<string>(StringComparer.Ordinal)
-        { "Params", "Maths", "Sets", "Vector", "Curve", "Surface", "Mesh", "Intersect", "Transform", "Display", "Rhino", "Kangaroo2", "Pufferfish" };
+        { "Params", "Maths", "Sets", "Vector", "Curve", "Surface", "Mesh", "Intersect", "Transform", "Display", "Rhino", "Kangaroo2", "Pufferfish", "RichedGraphMapper" };
         static readonly Dictionary<string, string> words = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             { "Params", "参数" }, { "Maths", "数学" }, { "Sets", "集合" }, { "Vector", "向量" },
             { "Curve", "曲线" }, { "Surface", "曲面" }, { "Mesh", "网格" }, { "Intersect", "相交" },
             { "Transform", "变换" }, { "Display", "显示" }, { "Rhino", "犀牛" }, { "Kangaroo2", "袋鼠2" },
             { "Pufferfish", "河豚" }, { "Twisted Box", "扭曲盒" }, { "Number", "数值" },
+            { "RichedGraphMapper", "图形映射器" }, { "Mapping", "映射" },
             { "Geometry", "几何" }, { "Primitive", "基本类型" }, { "Input", "输入" }, { "Util", "工具" },
             { "Domain", "区间" }, { "Matrix", "矩阵" }, { "Operators", "运算符" }, { "Polynomials", "多项式" },
             { "Script", "脚本" }, { "Time", "时间" }, { "Trig", "三角函数" },

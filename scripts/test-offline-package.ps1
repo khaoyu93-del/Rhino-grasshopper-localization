@@ -1,7 +1,7 @@
-param([string]$RhinoRoot = 'C:\Program Files\Rhino 8')
+param([string]$RhinoRoot = 'C:\Program Files\Rhino 8', [string]$PackagePath)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
-$zip = Join-Path $root 'downloads\GrasshopperChinese-Rhino8-Pufferfish3-offline-setup.zip'
+$zip = if ($PackagePath) { [IO.Path]::GetFullPath($PackagePath) } else { Join-Path $root 'downloads\GrasshopperChinese-0.3.1-Rhino8-Pufferfish3-RichedGraphMapper-offline-setup.zip' }
 $test = Join-Path $root ('build\offline-test-' + [Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $test | Out-Null
 function Invoke-Installer($folder, $libraries, $users, $packages, $state, [switch]$ExpectFailure, [string]$RhinoOverride) {
@@ -20,6 +20,21 @@ function Invoke-Uninstaller($folder, $state) {
     if ($process.ExitCode -ne 0) { throw 'Offline uninstall failed.' }
 }
 function Assert($condition, $message) { if (!$condition) { throw $message } }
+function Add-PackageSubD($bundle, $packages) {
+    $destination = Join-Path $packages 'Pufferfish\3.0.0\Pufferfish WIP SubD Components'
+    New-Item -ItemType Directory -Path $destination -Force | Out-Null
+    foreach ($file in Get-ChildItem -LiteralPath (Join-Path $bundle 'Pufferfish\SubD') -Filter '*.ghuser' -File) {
+        Copy-Item -LiteralPath $file.FullName -Destination (Join-Path $destination $file.Name)
+    }
+    return $destination
+}
+function Assert-PackageSubD($bundle, $destination) {
+    foreach ($file in Get-ChildItem -LiteralPath (Join-Path $bundle 'Pufferfish\SubD') -Filter '*.ghuser' -File) {
+        $target = Join-Path $destination $file.Name
+        Assert (Test-Path -LiteralPath $target) ('External SubD disappeared: ' + $file.Name)
+        Assert ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -eq (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash) ('External SubD changed: ' + $file.Name)
+    }
+}
 try {
     Expand-Archive -LiteralPath $zip -DestinationPath (Join-Path $test 'unpacked')
     $bundle = Join-Path $test 'unpacked\GrasshopperChinese-Offline'
@@ -32,7 +47,8 @@ try {
     Invoke-Installer $bundle $libraries $users $packages $state
     Assert (Test-Path -LiteralPath (Join-Path $libraries 'PufferfishChineseBundle\Pufferfish3-0.gha')) 'Pufferfish was not installed.'
     Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse).Count -eq 10) 'SubD count mismatch.'
-    Assert (@(Get-ChildItem -LiteralPath (Join-Path $existing 'Languages') -Filter '*.json').Count -eq 4) 'Language pack count mismatch.'
+    Assert (@(Get-ChildItem -LiteralPath (Join-Path $existing 'Languages') -Filter '*.json').Count -eq 5) 'Language pack count mismatch.'
+    Assert (Test-Path -LiteralPath (Join-Path $existing 'Languages\richedgraphmapper.zh-CN.json')) 'Rich Graph Mapper language pack was not installed.'
     $sdk = [Reflection.AssemblyName]::GetAssemblyName((Join-Path $RhinoRoot 'Plug-ins\Grasshopper\Grasshopper.dll')).Version
     $installed = [Reflection.Assembly]::Load([IO.File]::ReadAllBytes((Join-Path $existing 'GrasshopperChinese.gha')))
     Assert (($installed.GetReferencedAssemblies() | Where-Object Name -eq 'Grasshopper').Version -eq $sdk) 'Installed plugin does not reference target SDK.'
@@ -66,6 +82,106 @@ try {
     Assert (Test-Path -LiteralPath $external) 'External Pufferfish was removed.'
     Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse).Count -eq 1) 'External SubD object was removed.'
     Write-Host 'PASS existing Pufferfish and identical SubD reuse without removal'
+
+    $case = Join-Path $test 'package-subd'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    $externalSubD = Add-PackageSubD $bundle $packages
+    Invoke-Installer $bundle $libraries $users $packages $state
+    Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse -ErrorAction SilentlyContinue).Count -eq 0) 'Package SubD was copied into UserObjects.'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    Invoke-Uninstaller $bundle $state
+    Assert-PackageSubD $bundle $externalSubD
+    Write-Host 'PASS package-managed SubD reuse on first and repeated install without removal'
+
+    $case = Join-Path $test 'legacy-subd-upgrade'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    $externalSubD = Add-PackageSubD $bundle $packages
+    $owned = Join-Path $users 'PufferfishChineseBundle'
+    [IO.File]::Delete((Join-Path $owned 'Weighted Average SubD.ghuser'))
+    [IO.File]::WriteAllText((Join-Path $owned 'private.txt'), 'keep-private-subd-file')
+    Invoke-Installer $bundle $libraries $users $packages $state
+    Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse).Count -eq 0) 'Legacy duplicate SubD files were not retired.'
+    $receipt = Get-Content -LiteralPath (Join-Path $state 'installation.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+    Assert (@($receipt.files | Where-Object { $_.target -like '*.ghuser' }).Count -eq 0) 'Retired SubD records remain in the receipt.'
+    Assert (@(Get-ChildItem -LiteralPath (Join-Path $state 'Backups') -Filter 'subd-retired-*.backup' -Recurse).Count -eq 9) 'Existing legacy duplicates were not backed up.'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    Invoke-Uninstaller $bundle $state
+    Assert-PackageSubD $bundle $externalSubD
+    Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse).Count -eq 0) 'Uninstall recreated retired duplicate SubD files.'
+    Assert ([IO.File]::ReadAllText((Join-Path $owned 'private.txt')) -eq 'keep-private-subd-file') 'Private SubD file changed.'
+    Write-Host 'PASS legacy SubD retirement, missing owned target, backup retention and uninstall without duplicates'
+
+    $case = Join-Path $test 'package-subd-conflict'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    $externalSubD = Add-PackageSubD $bundle $packages
+    $edited = Join-Path $externalSubD 'Weighted Average SubD.ghuser'
+    [IO.File]::AppendAllText($edited, 'external-personal-edit')
+    $editedHash = (Get-FileHash -LiteralPath $edited -Algorithm SHA256).Hash
+    Invoke-Installer $bundle $libraries $users $packages $state -ExpectFailure
+    Assert ((Get-FileHash -LiteralPath $edited -Algorithm SHA256).Hash -eq $editedHash) 'External personal edit was overwritten.'
+    Assert (!(Test-Path -LiteralPath $libraries)) 'External SubD conflict wrote installation files.'
+    Write-Host 'PASS different package SubD content rejection without changing external files'
+
+    $case = Join-Path $test 'owned-subd-edit'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    $externalSubD = Add-PackageSubD $bundle $packages
+    $edited = Join-Path $users 'PufferfishChineseBundle\Weighted Average SubD.ghuser'
+    [IO.File]::AppendAllText($edited, 'owned-personal-edit')
+    $editedHash = (Get-FileHash -LiteralPath $edited -Algorithm SHA256).Hash
+    Invoke-Installer $bundle $libraries $users $packages $state -ExpectFailure
+    Assert ((Get-FileHash -LiteralPath $edited -Algorithm SHA256).Hash -eq $editedHash) 'Owned personal SubD edit was removed.'
+    Assert-PackageSubD $bundle $externalSubD
+    Write-Host 'PASS personally modified owned duplicate is not retired'
+
+    $case = Join-Path $test 'protected-subd-backup'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    $owned = Join-Path $users 'PufferfishChineseBundle'
+    New-Item -ItemType Directory -Path $owned -Force | Out-Null
+    $protectedTarget = Join-Path $owned 'Weighted Average SubD.ghuser'
+    Copy-Item -LiteralPath (Join-Path $bundle 'Pufferfish\SubD\Weighted Average SubD.ghuser') -Destination $protectedTarget
+    Invoke-Installer $bundle $libraries $users $packages $state
+    $externalSubD = Add-PackageSubD $bundle $packages
+    Invoke-Installer $bundle $libraries $users $packages $state -ExpectFailure
+    Assert (Test-Path -LiteralPath $protectedTarget) 'Protected original SubD target was removed.'
+    Assert-PackageSubD $bundle $externalSubD
+    Write-Host 'PASS SubD with pre-existing original backup is not retired automatically'
+
+    $case = Join-Path $test 'subd-retirement-rollback'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    $externalSubD = Add-PackageSubD $bundle $packages
+    $receiptPath = Join-Path $state 'installation.json'
+    $receiptHash = (Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash
+    $last = Get-ChildItem -LiteralPath (Join-Path $users 'PufferfishChineseBundle') -Filter '*.ghuser' -File | Sort-Object Name | Select-Object -Last 1
+    $lock = [IO.File]::Open($last.FullName, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+    try { Invoke-Installer $bundle $libraries $users $packages $state -ExpectFailure }
+    finally { $lock.Dispose() }
+    Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse).Count -eq 10) 'Failed retirement did not restore the owned SubD files.'
+    Assert-PackageSubD $bundle (Join-Path $users 'PufferfishChineseBundle')
+    Assert-PackageSubD $bundle $externalSubD
+    Assert ((Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash -eq $receiptHash) 'Failed retirement changed the original receipt.'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    Invoke-Uninstaller $bundle $state
+    Assert-PackageSubD $bundle $externalSubD
+    Write-Host 'PASS locked duplicate retirement rolls back deleted files and preserves the original receipt'
+
+    $case = Join-Path $test 'subd-receipt-rollback'
+    $libraries = Join-Path $case 'Libraries'; $users = Join-Path $case 'UserObjects'; $packages = Join-Path $case 'Packages'; $state = Join-Path $case 'State'
+    Invoke-Installer $bundle $libraries $users $packages $state
+    $externalSubD = Add-PackageSubD $bundle $packages
+    $receiptPath = Join-Path $state 'installation.json'
+    $receiptHash = (Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash
+    $lock = [IO.File]::Open($receiptPath, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+    try { Invoke-Installer $bundle $libraries $users $packages $state -ExpectFailure }
+    finally { $lock.Dispose() }
+    Assert (@(Get-ChildItem -LiteralPath $users -Filter '*.ghuser' -Recurse).Count -eq 10) 'Receipt failure did not restore retired SubD files.'
+    Assert ((Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash -eq $receiptHash) 'Receipt failure changed the original receipt.'
+    Assert-PackageSubD $bundle $externalSubD
+    Invoke-Installer $bundle $libraries $users $packages $state
+    Invoke-Uninstaller $bundle $state
+    Write-Host 'PASS receipt commit failure restores retired duplicates and preserves their installation records'
 
     $case = Join-Path $test 'invalid-sdk'
     Invoke-Installer $bundle (Join-Path $case 'Libraries') (Join-Path $case 'UserObjects') (Join-Path $case 'Packages') (Join-Path $case 'State') -ExpectFailure -RhinoOverride (Join-Path $case 'no-rhino')

@@ -55,6 +55,17 @@ class CoreTests
             Equal(null, d.Find("Untranslated port text", "port-description"));
             Equal("移动", c.Find("Move", "Transform"));
         });
+        Test("RichedGraphMapper translations remain plugin-specific", delegate {
+            var basePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "Languages");
+            var rich = Catalog.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(basePath, "richedgraphmapper.zh-CN.json")));
+            Equal("增强图形映射器", rich.Find("Rich Graph Mapper", "component"));
+            Equal("源区间", rich.Find("Source", "port-name"));
+            Equal("源", rich.Find("S", "nickname"));
+            Equal("S形曲线", rich.Find("Sigmoid", "graph-name"));
+            Equal("图形编辑器", rich.Find("Graph Editor", "editor"));
+            Equal(null, rich.Find("Arc", "component"));
+            Equal("False", NativeTools.Contains("RichedGraphMapper").ToString());
+        });
         Test("category-specific entry precedes generic entry", delegate {
             var c = Catalog.Parse("[{\"name\":\"Circle\",\"translation\":\"圆\"},{\"name\":\"Circle\",\"category\":\"Params\",\"translation\":\"圆参数\"}]");
             Equal("圆参数", c.Find("Circle", "Params")); Equal("圆", c.Find("Circle", "Curve"));

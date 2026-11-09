@@ -15,15 +15,15 @@ using Grasshopper.Kernel;
 using Grasshopper.Kernel.Attributes;
 
 [assembly: AssemblyTitle("GrasshopperChinese")]
-[assembly: AssemblyVersion("0.3.0.0")]
-[assembly: AssemblyFileVersion("0.3.0.0")]
+[assembly: AssemblyVersion("0.3.1.0")]
+[assembly: AssemblyFileVersion("0.3.1.0")]
 
 namespace GrasshopperChinese
 {
     public sealed class PluginInfo : GH_AssemblyInfo
     {
         public override string Name { get { return "GrasshopperChinese"; } }
-        public override string Description { get { return "Grasshopper 简体中文界面预览版"; } }
+        public override string Description { get { return "Grasshopper 简体中文界面 0.3.1"; } }
         public override Guid Id { get { return new Guid("531059ef-a238-48c3-ac68-6827ab8fd66f"); } }
         public override string AuthorName { get { return "GrasshopperChinese contributors"; } }
         public override string AuthorContact { get { return ""; } }
@@ -64,6 +64,17 @@ namespace GrasshopperChinese
         static Catalog toolText;
         static Catalog pufferfishNames;
         static Catalog pufferfishText;
+        static Catalog richText;
+        static readonly Dictionary<Guid, string> richGraphs = new Dictionary<Guid, string>
+        {
+            { new Guid("d221fdb4-a2a5-4861-a206-f7ac8f91f9cb"), "Sigmoid" },
+            { new Guid("e4f68fba-e0ba-4bbb-98aa-96ecb7db5d4e"), "Polyline" },
+            { new Guid("19f04c28-60bd-4807-9308-c961b1233cea"), "Interpolated" },
+            { new Guid("34afa8f2-fee6-4e3b-82da-b980ffeb87aa"), "Bezier2" },
+            { new Guid("c5363e79-994b-4030-8e69-02cd00bf5982"), "Arc" }
+        };
+        static readonly Dictionary<Form, List<RavenTextProperty>> richEditorForms = new Dictionary<Form, List<RavenTextProperty>>();
+        static readonly Dictionary<ToolStripItem, string> richMenuTooltips = new Dictionary<ToolStripItem, string>();
         static readonly Dictionary<Guid, OriginalDescription> originals = new Dictionary<Guid, OriginalDescription>();
         static readonly Dictionary<string, string> pufferfishUserNicknames = new Dictionary<string, string>(StringComparer.Ordinal)
         {
@@ -95,6 +106,8 @@ namespace GrasshopperChinese
         static readonly FieldInfo canvasTooltip = typeof(GH_Canvas).GetField("_Tooltip", BindingFlags.Instance | BindingFlags.NonPublic);
         static readonly Type userObjectProxy = typeof(GH_Canvas).Assembly.GetType("Grasshopper.Kernel.GH_UserObjectProxy");
         static readonly Type pointAttributes = typeof(GH_Canvas).Assembly.GetType("Grasshopper.Kernel.Parameters.Param_PointAttributes");
+        static readonly Type graphEditorType = typeof(GH_Canvas).Assembly.GetType("Grasshopper.GUI.GH_GraphEditor");
+        static readonly PropertyInfo graphEditorGraph = graphEditorType == null ? null : graphEditorType.GetProperty("Graph", BindingFlags.Instance | BindingFlags.Public);
         static readonly PropertyInfo ribbonTooltip = typeof(GH_Ribbon).GetProperty("GH_Tooltip", BindingFlags.Instance | BindingFlags.NonPublic);
         static GH_TooltipComponent subscribedRibbonTooltip;
         static readonly Dictionary<ToolStripItem, string> toolbarOriginals = new Dictionary<ToolStripItem, string>();
@@ -112,6 +125,12 @@ namespace GrasshopperChinese
         static readonly HashSet<GH_RibbonDropdown> observedDropdowns = new HashSet<GH_RibbonDropdown>();
         static readonly FieldInfo dropdownContent = typeof(GH_RibbonDropdown).GetField("_pnlContent", BindingFlags.Instance | BindingFlags.NonPublic);
         static GH_Ribbon ribbon;
+        static GH_Ribbon layoutRibbon;
+        static bool ribbonLayoutDirty = true;
+        static bool startupTabPending = true;
+        static int ribbonStructure = -1;
+        static Size ribbonLayoutSize;
+        static string ribbonLayoutError;
         static GH_DocumentEditor editor;
         static ToolStripMenuItem enabledItem, bilingualItem;
         static bool initialized;
@@ -454,7 +473,7 @@ namespace GrasshopperChinese
 
         internal static void Attach(GH_Canvas canvas)
         {
-            if (!canvases.Add(canvas)) return;
+            if (!canvases.Add(canvas)) { StartInitialization(canvas); return; }
             canvas.DocumentChanged += delegate { Observe(canvas); };
             canvas.ContextMenuStripChanged += delegate { ObserveCanvasMenu(canvas); };
             canvas.MouseUp += delegate(object sender, MouseEventArgs args)
@@ -469,11 +488,16 @@ namespace GrasshopperChinese
             canvas.CanvasPaintEnd += EndDisplayNames;
             ObserveCanvasTooltip(canvas);
             canvas.Disposed += delegate { EndDisplayNames(canvas); ForgetCanvasTooltip(canvas); canvases.Remove(canvas); if (menuCanvas == canvas) { menuCanvas = null; menuObjectGuid = Guid.Empty; contextObject = null; } };
+            StartInitialization(canvas);
+        }
+
+        static void StartInitialization(GH_Canvas canvas)
+        {
             if (setupTimer != null || initialized) { if (initialized) Observe(canvas); return; }
             setupTimer = new Timer { Interval = 250 };
             setupTimer.Tick += delegate
             {
-                if (Instances.DocumentEditor == null) return;
+                if (Instances.DocumentEditor == null || Instances.DocumentEditor.IsDisposed) return;
                 setupTimer.Stop();
                 setupTimer.Dispose();
                 setupTimer = null;
@@ -490,6 +514,7 @@ namespace GrasshopperChinese
             toolText = Catalog.Parse(File.ReadAllText(Path.Combine(folder, "Languages", "tool-text.zh-CN.json")));
             pufferfishNames = Catalog.Parse(File.ReadAllText(Path.Combine(folder, "Languages", "pufferfish.zh-CN.json")));
             pufferfishText = Catalog.Parse(File.ReadAllText(Path.Combine(folder, "Languages", "pufferfish-text.zh-CN.json")));
+            richText = Catalog.Parse(File.ReadAllText(Path.Combine(folder, "Languages", "richedgraphmapper.zh-CN.json")));
             Enabled = settings.GetValue("Enabled", true);
             Bilingual = settings.GetValue("Bilingual", false);
             windowHook = WindowMessage;
@@ -501,6 +526,11 @@ namespace GrasshopperChinese
         static void Initialize()
         {
             Prepare();
+            if (windowHookHandle == IntPtr.Zero)
+            {
+                windowHookHandle = SetWindowsHookEx(4, windowHook, IntPtr.Zero, GetCurrentThreadId());
+                if (windowHookHandle == IntPtr.Zero) throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+            }
             editor = Instances.DocumentEditor;
             var root = new ToolStripMenuItem("中文界面") { Name = "GrasshopperChineseMenu" };
             enabledItem = new ToolStripMenuItem("启用界面汉化") { Checked = Enabled, CheckOnClick = true };
@@ -514,14 +544,7 @@ namespace GrasshopperChinese
             root.DropDownItems.Add(new ToolStripSeparator());
             root.DropDownItems.Add("使用说明", null, delegate
             {
-                MessageBox.Show("Grasshopper 中文界面 0.3.0 预览版\n\n" +
-                    "已匹配原生、袋鼠和河豚组件的显示名称与说明。\n" +
-                    "关闭“显示 > 显示图标 / Display > Draw Icons”可查看文字标题。\n" +
-                    "自定义昵称保留。未知插件、自绘界面及未收录的动态文字可能保持英文。\n" +
-                    "取消勾选启用界面汉化可恢复英文。\n\n" +
-                    "词库条目：" + (catalog.Count + toolText.Count + pufferfishNames.Count + pufferfishText.Count) + "（包含未逐条审核的上游转换译文）。\n" +
-                    "基于 MultilingualGH 的 MIT 翻译资源与加载入口开发。",
-                    "Grasshopper 中文界面", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(UsageText(), "Grasshopper 中文界面 0.3.1", MessageBoxButtons.OK, MessageBoxIcon.Information);
             });
             editor.MainMenuStrip.Items.Add(root);
             componentServer = Instances.ComponentServer;
@@ -536,15 +559,20 @@ namespace GrasshopperChinese
             ribbonTimer.Start();
             editor.Disposed += delegate
             {
-                ribbonTimer.Stop(); ribbonTimer.Dispose();
-                componentServer.GHAFileLoaded -= ComponentLibraryLoaded;
+                if (ribbonTimer != null) { ribbonTimer.Stop(); ribbonTimer.Dispose(); ribbonTimer = null; }
+                if (componentServer != null) componentServer.GHAFileLoaded -= ComponentLibraryLoaded;
                 if (windowHookHandle != IntPtr.Zero) { UnhookWindowsHookEx(windowHookHandle); windowHookHandle = IntPtr.Zero; }
                 if (subscribedRibbonTooltip != null) subscribedRibbonTooltip.PopulateTooltip -= TranslateRibbonTooltip;
+                subscribedRibbonTooltip = null;
+                foreach (var canvas in canvases) EndDisplayNames(canvas);
+                ribbon = null; layoutRibbon = null; editor = null; componentServer = null;
+                ribbonLayoutDirty = true; startupTabPending = true; ribbonStructure = -1;
+                ribbonLayoutError = null; initialized = false; proxiesChanged = false;
             };
         }
 
         static void ComponentLibraryLoaded(object sender, GH_GHALoadingEventArgs args)
-        { proxiesChanged = true; }
+        { proxiesChanged = true; ribbonLayoutDirty = true; }
 
         static void CollectProxies()
         {
@@ -560,7 +588,7 @@ namespace GrasshopperChinese
             {
                 if (proxy.Type == null) return;
                 assemblyName = proxy.Type.Assembly.GetName().Name;
-                if (!NativeTools.Contains(assemblyName) && assemblyName != "Pufferfish") return;
+                if (!NativeTools.Contains(assemblyName) && assemblyName != "Pufferfish" && assemblyName != "RichedGraphMapper") return;
             }
             originals.Add(proxy.Guid, new OriginalDescription { Proxy = proxy, Name = proxy.Desc.Name, Nickname = proxy.Desc.NickName, Category = proxy.Desc.Category, Description = proxy.Desc.Description, AssemblyName = assemblyName });
         }
@@ -588,10 +616,60 @@ namespace GrasshopperChinese
         static string Format(string chinese, string english) { return Bilingual ? chinese + " · " + english : chinese; }
 
         static string ComponentName(OriginalDescription original)
-        { return original.AssemblyName == "Pufferfish" ? pufferfishNames.Find(original.Name, "Pufferfish") : catalog.Find(original.Name, original.Category); }
+        {
+            if (original.AssemblyName == "RichedGraphMapper") return richText.Find(original.Name, "component");
+            return original.AssemblyName == "Pufferfish" ? pufferfishNames.Find(original.Name, "Pufferfish") : catalog.Find(original.Name, original.Category);
+        }
 
         static string ComponentDescription(OriginalDescription original)
-        { return original.AssemblyName == "Pufferfish" ? pufferfishText.Find(original.Description, "description") : toolText.Find(original.Description, "description"); }
+        {
+            if (original.AssemblyName == "RichedGraphMapper") return richText.Find(original.Description, "description");
+            return original.AssemblyName == "Pufferfish" ? pufferfishText.Find(original.Description, "description") : toolText.Find(original.Description, "description");
+        }
+
+        internal static bool IsRich(IGH_DocumentObject component)
+        {
+            OriginalDescription original;
+            return component != null && OriginalForObject(component, out original) && original.AssemblyName == "RichedGraphMapper";
+        }
+
+        internal static string RichLabel(string english, string category, bool enabled, bool bilingual)
+        {
+            if (!enabled || richText == null || string.IsNullOrEmpty(english)) return english;
+            var chinese = richText.Find(english, category);
+            return chinese == null ? english : bilingual ? chinese + " · " + english : chinese;
+        }
+
+        static string RichRuntimeLabel(string english, bool enabled, bool bilingual)
+        {
+            var translated = RichLabel(english, "runtime", enabled, bilingual);
+            if (translated != english || string.IsNullOrEmpty(english) || !enabled || richText == null) return translated;
+            int separator = english.IndexOf(". ", StringComparison.Ordinal), number;
+            if (separator > 0 && int.TryParse(english.Substring(0, separator), out number))
+            {
+                var message = english.Substring(separator + 2);
+                var chinese = richText.Find(message, "runtime");
+                if (chinese != null) return bilingual ? english.Substring(0, separator + 2) + chinese + " · " + english : english.Substring(0, separator + 2) + chinese;
+            }
+            return english;
+        }
+
+        static string RichGraphLabel(string english, bool enabled, bool bilingual)
+        {
+            var translated = RichLabel(english, "graph-name", enabled, bilingual);
+            if (translated != english || !enabled || richText == null || string.IsNullOrEmpty(english)) return translated;
+            foreach (var name in new[] { "Interpolated", "Polyline" })
+            {
+                if (!english.StartsWith(name + " ", StringComparison.Ordinal) || !english.EndsWith(" points", StringComparison.Ordinal)) continue;
+                int count;
+                if (int.TryParse(english.Substring(name.Length + 1, english.Length - name.Length - 8), out count) && count >= 3 && count <= 10)
+                {
+                    var chinese = richText.Find(name, "graph-name");
+                    if (chinese != null) return bilingual ? chinese + " " + count + " 点 · " + english : chinese + " " + count + " 点";
+                }
+            }
+            return english;
+        }
 
         internal static bool Lookup(IGH_DocumentObject component, out string translated, out string originalNickname)
         {
@@ -657,6 +735,11 @@ namespace GrasshopperChinese
                     TranslatePufferfishTooltip(args);
                     return;
                 }
+                if (IsRich(owner))
+                {
+                    TranslateRichTooltip(args);
+                    return;
+                }
             }
             if (args.Title == "Raven Zones Editor" || args.Title == "Raven Search")
             {
@@ -706,6 +789,48 @@ namespace GrasshopperChinese
             args.Title = PufferfishTooltipTitle(args.Title);
             args.Text = PufferfishTooltipText(args.Text, "port-description");
             args.Description = PufferfishTooltipText(args.Description, "port-description");
+        }
+
+        static string RichTooltipTitle(string english)
+        {
+            if (string.IsNullOrEmpty(english) || richText == null) return english;
+            string access = "", name = english;
+            if (name.EndsWith(" as list", StringComparison.Ordinal)) { access = "（列表）"; name = name.Substring(0, name.Length - 8); }
+            else if (name.EndsWith(" as tree", StringComparison.Ordinal)) { access = "（数据树）"; name = name.Substring(0, name.Length - 8); }
+            string nickname = "";
+            int separator = name.LastIndexOf(" (", StringComparison.Ordinal);
+            if (separator >= 0 && name.EndsWith(")", StringComparison.Ordinal))
+            {
+                nickname = name.Substring(separator); name = name.Substring(0, separator);
+            }
+            var translated = richText.Find(name, "port-name") ?? richText.Find(name, "component");
+            if (translated == null) return english;
+            return Bilingual ? translated + " · " + english : translated + nickname + access;
+        }
+
+        static string RichTooltipText(string english)
+        {
+            if (string.IsNullOrEmpty(english) || richText == null) return english;
+            var translated = richText.Find(english, "port-description") ?? richText.Find(english, "description") ?? richText.Find(english, "runtime") ?? richText.Find(english, "graph-description");
+            if (translated != null) return Format(translated, english);
+            var lines = english.Replace("\r\n", "\n").Split('\n');
+            bool changed = false;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var original = lines[i].Trim();
+                var desired = RichRuntimeLabel(original, Enabled, Bilingual);
+                if (desired == original) continue;
+                lines[i] = desired; changed = true;
+            }
+            return changed ? string.Join(Environment.NewLine, lines) : english;
+        }
+
+        internal static void TranslateRichTooltip(GH_TooltipDisplayEventArgs args)
+        {
+            if (!Enabled) return;
+            args.Title = RichTooltipTitle(args.Title);
+            args.Text = RichTooltipText(args.Text);
+            args.Description = RichTooltipText(args.Description);
         }
 
         static void ObserveCanvasTooltip(GH_Canvas canvas)
@@ -1031,8 +1156,54 @@ namespace GrasshopperChinese
         {
             var popup = control as ToolStripDropDown;
             if (popup != null) { PreparePopup(popup); return; }
-            var form = control as Form;
-            if (form != null) PrepareTutorial(form);
+            var form = control as Form ?? (control == null ? null : control.FindForm());
+            if (form != null && !PrepareGraphEditor(form)) PrepareTutorial(form);
+        }
+
+        internal static bool PrepareGraphEditor(Form form)
+        {
+            var editorType = graphEditorType;
+            if (form == null || editorType == null || form.GetType() != editorType) return false;
+            var container = graphEditorGraph == null ? null : graphEditorGraph.GetValue(form, null) as Grasshopper.Kernel.Graphs.GH_GraphContainer;
+            bool rich = container != null && container.Graph != null && container.Graph.GetType().Assembly.GetName().Name == "RichedGraphMapper" && richGraphs.ContainsKey(container.Graph.GraphTypeID);
+            List<RavenTextProperty> properties;
+            if (!richEditorForms.TryGetValue(form, out properties))
+            {
+                if (!rich) return false;
+                properties = new List<RavenTextProperty>();
+                properties.Add(new RavenTextProperty { Get = () => form.Text, Set = value => form.Text = value });
+                foreach (string name in new[] { "_btnOK", "_btnCancel" })
+                {
+                    var field = editorType.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic);
+                    var button = field == null ? null : field.GetValue(form) as Button;
+                    if (button != null) properties.Add(new RavenTextProperty { Get = () => button.Text, Set = value => button.Text = value });
+                }
+                foreach (string name in new[] { "_numX0", "_numX1", "_numY0", "_numY1" })
+                {
+                    var field = editorType.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic);
+                    var scroller = field == null ? null : field.GetValue(form);
+                    var prefix = scroller == null ? null : scroller.GetType().GetProperty("Prefix", BindingFlags.Instance | BindingFlags.Public);
+                    if (prefix != null && prefix.PropertyType == typeof(string) && prefix.CanRead && prefix.CanWrite)
+                        properties.Add(new RavenTextProperty { Get = () => (string)prefix.GetValue(scroller, null), Set = value => prefix.SetValue(scroller, value, null) });
+                }
+                richEditorForms.Add(form, properties);
+                form.Disposed += delegate { richEditorForms.Remove(form); };
+            }
+            foreach (var property in properties)
+            {
+                var current = property.Get();
+                if (current != property.Desired) property.Original = current;
+                string original = property.Original;
+                int start = string.IsNullOrEmpty(original) ? 0 : original.Length - original.TrimStart().Length;
+                int end = string.IsNullOrEmpty(original) ? 0 : original.Length - original.TrimEnd().Length;
+                string text = string.IsNullOrEmpty(original) ? original : original.Trim();
+                var desired = RichLabel(text, "editor", rich && Enabled, Bilingual);
+                if (desired != text) desired = original.Substring(0, start) + desired + original.Substring(original.Length - end);
+                else desired = original;
+                property.Desired = desired;
+                if (current != desired) property.Set(desired);
+            }
+            return true;
         }
 
         static bool PreparePopup(ToolStripDropDown popup)
@@ -1120,7 +1291,14 @@ namespace GrasshopperChinese
         static string MenuLabelForDescription(string english, bool enabled, bool bilingual, OriginalDescription original)
         {
             if (!enabled) return english;
-            Catalog names = original != null && original.AssemblyName == "Pufferfish" ? pufferfishNames : catalog;
+            if (original != null && original.AssemblyName == "RichedGraphMapper")
+            {
+                var rich = RichLabel(english, "menu", enabled, bilingual);
+                if (rich != english) return rich;
+                rich = RichRuntimeLabel(english, enabled, bilingual);
+                if (rich != english) return rich;
+            }
+            Catalog names = original != null && original.AssemblyName == "RichedGraphMapper" ? richText : original != null && original.AssemblyName == "Pufferfish" ? pufferfishNames : catalog;
             if (original != null && names != null)
             {
                 var specific = names.Find(english, "port-name");
@@ -1181,6 +1359,44 @@ namespace GrasshopperChinese
             return (bilingual ? chinese + " · " + key : chinese) + accelerator + ellipsis;
         }
 
+        static bool IsRichGraphTag(object tag)
+        {
+            if (tag is Guid) return richGraphs.ContainsKey((Guid)tag);
+            var proxy = tag as GH_GraphProxy;
+            return proxy != null && proxy.Type != null && proxy.Type.Assembly.GetName().Name == "RichedGraphMapper" && richGraphs.ContainsKey(proxy.GUID);
+        }
+
+        static bool ContainsRichGraphItems(ToolStripItemCollection items)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (IsRichGraphTag(item.Tag)) return true;
+                var menu = item as ToolStripMenuItem;
+                if (menu != null && ContainsRichGraphItems(menu.DropDownItems)) return true;
+            }
+            return false;
+        }
+
+        internal static string RichMenuLabel(ToolStripItem item, string english, bool enabled, bool bilingual, OriginalDescription original)
+        {
+            if (!enabled || item == null || string.IsNullOrEmpty(english)) return english;
+            bool richOwner = original != null && original.AssemblyName == "RichedGraphMapper";
+            bool richPointItem = richOwner && item.Tag is int && (int)item.Tag >= 3 && (int)item.Tag <= 10 &&
+                (english.StartsWith("Interpolated", StringComparison.Ordinal) || english.StartsWith("Polyline", StringComparison.Ordinal));
+            if (richPointItem || IsRichGraphTag(item.Tag))
+            {
+                var graph = RichGraphLabel(english, enabled, bilingual);
+                if (graph != english) return graph;
+            }
+            var parent = item as ToolStripMenuItem;
+            if (parent != null && english == "Graph types" && ContainsRichGraphItems(parent.DropDownItems))
+            {
+                var translated = RichLabel(english, "menu", enabled, bilingual);
+                if (translated != english) return translated;
+            }
+            return MenuLabelForDescription(english, enabled, bilingual, original);
+        }
+
         static void CaptureMenus(ToolStripItemCollection items)
         { CaptureMenusForObject(items, Guid.Empty); }
 
@@ -1202,7 +1418,8 @@ namespace GrasshopperChinese
                     menuOriginals.Add(item, item.Text);
                     menuOwners.Add(item, owner);
                     menuDescriptions.Add(item, description);
-                    item.Disposed += delegate { menuOriginals.Remove(item); menuOwners.Remove(item); menuDescriptions.Remove(item); };
+                    if ((description != null && description.AssemblyName == "RichedGraphMapper") || IsRichGraphTag(item.Tag)) richMenuTooltips[item] = item.ToolTipText;
+                    item.Disposed += delegate { menuOriginals.Remove(item); menuOwners.Remove(item); menuDescriptions.Remove(item); richMenuTooltips.Remove(item); };
                     var dropdown = item as ToolStripMenuItem;
                     if (dropdown != null)
                     {
@@ -1220,8 +1437,14 @@ namespace GrasshopperChinese
             foreach (var pair in menuOriginals)
             {
                 if (pair.Key.IsDisposed || ravenMenuProperties.ContainsKey(pair.Key)) continue;
-                string desired = MenuLabelForDescription(pair.Value, Enabled, Bilingual, menuDescriptions[pair.Key]);
+                string desired = RichMenuLabel(pair.Key, pair.Value, Enabled, Bilingual, menuDescriptions[pair.Key]);
                 if (pair.Key.Text != desired) pair.Key.Text = desired;
+                string tooltip;
+                if (richMenuTooltips.TryGetValue(pair.Key, out tooltip))
+                {
+                    var translated = IsRichGraphTag(pair.Key.Tag) ? RichLabel(tooltip, "graph-description", Enabled, Bilingual) : RichLabel(tooltip, "menu", Enabled, Bilingual);
+                    if (pair.Key.ToolTipText != translated) pair.Key.ToolTipText = translated;
+                }
             }
         }
 
@@ -1237,6 +1460,7 @@ namespace GrasshopperChinese
                 TranslateMenus();
                 TranslateRavenMenus();
                 foreach (var form in new List<Form>(tutorialForms.Keys)) PrepareTutorial(form);
+                foreach (var form in new List<Form>(richEditorForms.Keys)) PrepareGraphEditor(form);
                 ObserveRavenSearch();
                 CaptureToolbar();
                 RefreshToolbar();
@@ -1251,6 +1475,39 @@ namespace GrasshopperChinese
                 settings.WritePersistentSettings();
             }
             catch (Exception ex) { Log(ex); }
+        }
+
+        internal static void AddRichDisplayScopes(IGH_Component component, List<TextScope> scopes)
+        {
+            if (!Enabled || !IsRich(component) || richText == null) return;
+            OriginalDescription original;
+            if (!OriginalForObject(component, out original)) return;
+            var description = richText.Find(original.Description, "description");
+            if (description != null) scopes.Add(new TextScope(() => component.Description, value => component.Description = value, Format(description, original.Description)));
+            var nickname = richText.Find(original.Nickname, "nickname");
+            if (nickname != null) scopes.Add(new TextScope(() => component.NickName, value => component.NickName = value,
+                DisplayText.Nickname(component.NickName, original.Nickname, Format(nickname, original.Nickname))));
+            var concrete = component as GH_Component;
+            if (concrete != null && concrete.Message == "Remap")
+                scopes.Add(new TextScope(() => concrete.Message, value => concrete.Message = value, RichLabel("Remap", "runtime", Enabled, Bilingual)));
+            foreach (var ports in new[] { component.Params.Input, component.Params.Output })
+            {
+                foreach (var port in ports)
+                {
+                    string name = port.Name, text = port.Description;
+                    string defaultNickname = name == "Values" ? "V" : name == "Source" ? "S" : name == "Target" ? "T" : null;
+                    var translatedName = richText.Find(name, "port-name");
+                    var translatedDescription = richText.Find(text, "port-description");
+                    if (translatedName != null) scopes.Add(new TextScope(() => port.Name, value => port.Name = value, Format(translatedName, name)));
+                    if (translatedDescription != null) scopes.Add(new TextScope(() => port.Description, value => port.Description = value, Format(translatedDescription, text)));
+                    if (defaultNickname != null)
+                    {
+                        var translatedNickname = richText.Find(defaultNickname, "nickname");
+                        if (translatedNickname != null) scopes.Add(new TextScope(() => port.NickName, value => port.NickName = value,
+                            DisplayText.Nickname(port.NickName, defaultNickname, Format(translatedNickname, defaultNickname))));
+                    }
+                }
+            }
         }
 
         static void BeginDisplayNames(GH_Canvas canvas)
@@ -1273,6 +1530,8 @@ namespace GrasshopperChinese
                                 DisplayText.Nickname(parameter.NickName, nick, text)));
                         if (obj is Grasshopper.Kernel.Special.GH_Cluster && IsPufferfish(obj))
                             scopes.Add(new TextScope(() => obj.NickName, value => obj.NickName = value, DisplayText.Nickname(obj.NickName, nick, text)));
+                        var richComponent = obj as IGH_Component;
+                        if (richComponent != null) AddRichDisplayScopes(richComponent, scopes);
                     }
                 }
             }
@@ -1300,10 +1559,16 @@ namespace GrasshopperChinese
         }
 
         internal static string ComponentPortName(IGH_Component component, string name)
-        { return IsPufferfish(component) ? Enabled ? pufferfishNames.Find(name, "port-name") : null : PortName(name); }
+        {
+            if (IsRich(component)) return Enabled && richText != null ? richText.Find(name, "port-name") : null;
+            return IsPufferfish(component) ? Enabled ? pufferfishNames.Find(name, "port-name") : null : PortName(name);
+        }
 
         internal static string ComponentPortDescription(IGH_Component component, string description)
-        { return IsPufferfish(component) ? Enabled ? pufferfishText.Find(description, "port-description") : null : PortDescription(description); }
+        {
+            if (IsRich(component)) return Enabled && richText != null ? richText.Find(description, "port-description") : null;
+            return IsPufferfish(component) ? Enabled ? pufferfishText.Find(description, "port-description") : null : PortDescription(description);
+        }
 
         internal static string Description(IGH_DocumentObject component)
         {
@@ -1353,6 +1618,24 @@ namespace GrasshopperChinese
                 dropdown.Disposed += delegate { observedDropdowns.Remove(dropdown); };
                 UpdateDropdown(dropdown);
             }
+        }
+
+        internal static string UsageText()
+        {
+            int count = 0;
+            foreach (var pack in new[] { catalog, toolText, pufferfishNames, pufferfishText, richText })
+                if (pack != null) count += pack.Count;
+            return "Grasshopper 中文界面 0.3.1\n\n" +
+                "已匹配原生、袋鼠、河豚和增强图形映射器的显示名称与说明。\n" +
+                "关闭“显示 > 显示图标 / Display > Draw Icons”可查看文字标题。\n" +
+                "增强图形映射器新建后需右键选择“图形类型”，再拖动控制点。\n" +
+                "自定义昵称保留；未知插件及未收录文字可能保持英文。关闭汉化可恢复英文。\n\n" +
+                "【刷新组件目录】\n" +
+                "重新收集当前已加载且支持的组件，并重新应用现有离线词库。用于新增组件后刷新显示；不会下载词库、在线翻译或自动补译未知插件。\n\n" +
+                "【导出组件及缺译清单】\n" +
+                "选择保存位置后导出一份 JSON 文件：包含组件 GUID、分类、英文名称与说明、输入输出端口、已匹配译文及实例化错误。翻译字段为空表示未匹配译文；Error 表示提取实例失败，不代表已有译文有误。可用于整理和补充词库，不会自动翻译或修改 GH 文档，也不会分别导出两个文件。\n\n" +
+                "词库条目：" + count + "（包含未逐条审核的上游转换译文）。\n" +
+                "基于 MultilingualGH 的 MIT 翻译资源与加载入口开发。";
         }
 
         static void ExportCatalog()
@@ -1445,10 +1728,62 @@ namespace GrasshopperChinese
             }
         }
 
+        internal static GH_RibbonTab StartupTab(IList<GH_RibbonTab> tabs, bool pending)
+        {
+            if (!pending) return null;
+            foreach (var tab in tabs)
+            {
+                if (ribbonTranslator.OriginalCategory(tab) != "Params") continue;
+                foreach (var panel in tab.Panels)
+                    if (panel.AllItems.Count != 0) return tab;
+            }
+            return null;
+        }
+
+        internal static bool PrepareRibbonLayout(GH_Ribbon target, bool changed)
+        {
+            if (target == null || target.IsDisposed) return false;
+            if (layoutRibbon != target)
+            {
+                layoutRibbon = target;
+                ribbonLayoutDirty = true; startupTabPending = true; ribbonStructure = -1;
+                ribbonLayoutError = null;
+            }
+            if (changed) ribbonLayoutDirty = true;
+            if (target.ClientSize.Width <= 0 || target.ClientSize.Height <= 0 || target.Tabs.Count == 0) return false;
+            int structure = target.Tabs.Count;
+            foreach (var tab in target.Tabs)
+            {
+                unchecked { structure = structure * 31 + RuntimeHelpers.GetHashCode(tab); }
+                foreach (var panel in tab.Panels)
+                {
+                    unchecked { structure = (structure * 31 + RuntimeHelpers.GetHashCode(panel)) * 31 + panel.AllItems.Count; }
+                }
+            }
+            if (structure != ribbonStructure || target.ClientSize != ribbonLayoutSize) ribbonLayoutDirty = true;
+            if (startupTabPending)
+            {
+                var parameters = StartupTab(target.Tabs, true);
+                if (parameters == null) return false;
+                target.ActiveTab = parameters;
+                ribbonLayoutDirty = true;
+            }
+            if (!ribbonLayoutDirty) return false;
+            target.LayoutRibbon();
+            foreach (var tab in target.Tabs) tab.PerformLayout();
+            target.LayoutRibbon();
+            target.Invalidate();
+            startupTabPending = false; ribbonLayoutDirty = false;
+            ribbonStructure = structure; ribbonLayoutSize = target.ClientSize;
+            ribbonLayoutError = null;
+            return true;
+        }
+
         static void RefreshRibbon()
         {
             try
             {
+                if (editor == null || editor.IsDisposed) return;
                 if (ribbon == null || ribbon.IsDisposed) ribbon = FindRibbon(editor);
                 if (ribbon == null) return;
                 ObserveRibbonTooltip();
@@ -1469,9 +1804,13 @@ namespace GrasshopperChinese
                         changed |= before != panel.Name;
                     }
                 }
-                if (changed) { ribbon.PerformLayout(); ribbon.Refresh(); }
+                if (PrepareRibbonLayout(ribbon, changed)) ribbon.Refresh();
             }
-            catch (Exception ex) { Log(ex); if (ribbonTimer != null) ribbonTimer.Stop(); }
+            catch (Exception ex)
+            {
+                ribbonLayoutDirty = true;
+                if (ribbonLayoutError != ex.Message) { ribbonLayoutError = ex.Message; Log(ex); }
+            }
         }
 
         static void Observe(GH_Canvas canvas)

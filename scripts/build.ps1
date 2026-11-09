@@ -8,7 +8,7 @@ $seen = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringC
 foreach ($entry in [regex]::Matches($menu.Groups[1].Value, '\{\s*"([^"\r\n]+)"\s*,\s*"')) {
     if (!$seen.Add($entry.Groups[1].Value)) { throw "Duplicate menu key: $($entry.Groups[1].Value)" }
 }
-foreach ($pack in @('zh-CN.json', 'tool-text.zh-CN.json', 'pufferfish.zh-CN.json', 'pufferfish-text.zh-CN.json')) {
+foreach ($pack in @('zh-CN.json', 'tool-text.zh-CN.json', 'pufferfish.zh-CN.json', 'pufferfish-text.zh-CN.json', 'richedgraphmapper.zh-CN.json')) {
     $rows = Get-Content -LiteralPath "$root\Languages\$pack" -Raw | ConvertFrom-Json
     $entries = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::Ordinal)
     foreach ($row in $rows) {

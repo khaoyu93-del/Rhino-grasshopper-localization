@@ -454,7 +454,8 @@ class ToolLabelTests
             runtime.GetField("catalog", flags).SetValue(null, names);
             runtime.GetField("pufferfishNames", flags).SetValue(null, Catalog.Parse(File.ReadAllText(Path.Combine(languagePath, "pufferfish.zh-CN.json"))));
             runtime.GetField("pufferfishText", flags).SetValue(null, Catalog.Parse(File.ReadAllText(Path.Combine(languagePath, "pufferfish-text.zh-CN.json"))));
-            var pufferfishAssembly = Assembly.LoadFrom(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"McNeel\Rhinoceros\packages\8.0\Pufferfish\3.0.0\Pufferfish3-0.gha"));
+            var pufferfishPath = Environment.GetEnvironmentVariable("GRASSHOPPER_CHINESE_PUFFERFISH_TEST_PATH") ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"McNeel\Rhinoceros\packages\8.0\Pufferfish\3.0.0\Pufferfish3-0.gha");
+            var pufferfishAssembly = Assembly.LoadFrom(pufferfishPath);
             var fish = (GH_Component)Activator.CreateInstance(pufferfishAssembly.GetType("Pufferfish.Components.Components_Curve._6_Curve.MirrorCutCurve"));
             var fishRecord = Activator.CreateInstance(recordType, true);
             foreach (var pair in new[] { new[] { "Name", fish.Name }, new[] { "Nickname", fish.NickName }, new[] { "Category", fish.Category }, new[] { "Description", fish.Description }, new[] { "AssemblyName", "Pufferfish" } })
